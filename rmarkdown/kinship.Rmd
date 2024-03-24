@@ -1,0 +1,62 @@
+---
+title: "Genetic Kinship Estimation Workflow"
+author: "Xenofon Giannoulis"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+#    code_folding: hide
+---
+
+# Introduction
+
+This Rmarkdown document outlines the genetic kinship estimation workflow for processing genotypic data in the context of a study involving 48 tissues. The analysis involves several steps, including data preprocessing, SNP thinning, calculating weights, cutting the genotype file by chromosome, and ultimately generating a kinship matrix for further analysis.
+
+# Kinship estimation with LDAK
+
+```r
+
+# 0: Define directories and bfile
+wdir="/no-backup/xenofon/Emperor/22_GTEX/master/kin/nuclear_genotypes_estim"
+bfile=$wdir/allchr.maf5hwe6missing10.684.mitonuc.eur
+outbeta="/no-backup/xenofon/Emperor/22_GTEX/master/kin/kinship_est"
+
+# 1: cutting the genotype file and thinning out SNPs with LD > 0.98
+mkdir $outbeta/src
+mkdir $outbeta/log
+ldak --bfile $bfile --cut-weights $outbeta/section 
+
+# 2. Step 2: Calculate the weights of SNPs in each section 
+ldak --bfile $bfile --calc-weights-all $outbeta/section
+cd /no-backup/xenofon/data/Common_Mind_release3/Kinship/nuclear
+
+# 3. Cutting Genotype File by Chromosome
+ldak --bfile $bfile --cut-kins $outbeta/partitions --by-chr YES
+
+# 4. Calculate kinship matrix per chromosome
+chromosomes=$(seq 1 22)
+for chr in $chromosomes
+do echo $chr
+ldak --bfile $bfile --calc-kins $outbeta/partitions --partition $chr \
+--weights $outbeta/section/weights.all --power -0.25
+done 
+
+# 5. Join all the kinships from all chromosomes 
+ldak --join-kins $outbeta/partitions 
+ldak --join-kins $outbeta/partitions --kinship-raw YES
+
+# 6. Get PCAs from the kinships 
+ldak --grm kinship.all --pca kinship.all.pcs --axes 20
+x=read.delim('kinship.all.pcs.vect', header=F, sep=' ')
+top10pc=subset(x, select=c(V1:V12))
+colnames(top10pc)=c("FID","IID",paste0("PC",1:10))
+write.table(top10pc, 'kinship.all.top10.vect', col.names=T, row.names=F, sep='\t', quote=F)
+
+# 7. Check/Write Results
+# Code to check and export kinship matrix in R
+kinship <- read.table("kinships.all.grm.raw", as.is = TRUE, header = FALSE)
+ksamples <- read.table("kinships.all.grm.id", as.is = TRUE, header = FALSE)
+colnames(kinship) <- ksamples$V1
+rownames(kinship) <- ksamples$V1
+
+write.table(kinship, "kinships.all.mitonuc.grm.txt", sep = "\t", quote = FALSE, row.names = TRUE, col.names = TRUE)
+```
