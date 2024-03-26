@@ -12,20 +12,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7 # Adjust the version to match your project's Ruby version
+
+      - name: Install Bundler
+        run: gem install bundler
+
       - name: Build and deploy
         run: |
-        
           # Fetch latest changes from the main branch
           git fetch origin main
 
-            # Reset the local main branch to match the fetched changes
-            git reset --hard origin/main
+          # Reset the local main branch to match the fetched changes
+          git reset --hard origin/main
 
-            # Run any build commands if necessary
-            bundle install
-            bundle exec jekyll build
+          # Run any build commands if necessary
+          bundle install
+          bundle exec jekyll build
 
-            # npm & Hugo extension :
-            npm install
-            npm run build
-            hugo --minify
+          # npm & Hugo extension :
+          npm install
+          npm run build
+          hugo --minify
