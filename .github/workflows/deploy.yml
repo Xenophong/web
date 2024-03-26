@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          submodules: true # Add this line if you use submodules
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
