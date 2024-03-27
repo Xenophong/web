@@ -28,6 +28,3 @@ jobs:
           # Reset the local main branch to match the fetched changes
           git reset --hard origin/main
 
-          # npm & Hugo extension :
-            npm install
-            npm run build
