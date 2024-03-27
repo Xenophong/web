@@ -12,29 +12,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          submodules: true 
+          submodules: true
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.0
 
-      - name: Install Bundler
-        run: gem install bundler -v 2.4.22 --no-document --user-install
-
-      - name: Build and deploy
+      - name: Install Bundler and dependencies
         run: |
-          # Fetch latest changes from the main branch
-          git fetch origin main
+          gem install bundler -v 2.4.22 --no-document --user-install
+          bundle config path vendor/bundle
+          bundle install
 
-          # Reset the local main branch to match the fetched changes
-          git reset --hard origin/main
+      - name: Build website
+        run: |
+          bundle exec jekyll build
 
-          # Run any build commands if necessary
-          ~/.gem/ruby/*/bin/bundle install --path vendor/bundle
-          ~/.gem/ruby/*/bin/bundle exec jekyll build
-
-          # npm & Hugo extension :
-          npm install
-          npm run build
-          hugo --minify
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.email "dsbioanalytics@gmail.com"
+          git config --global user.name "Xenophong"
+          git add .
+          git commit -m "Update website"
+          git push origin main
