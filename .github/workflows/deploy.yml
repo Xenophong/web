@@ -14,13 +14,13 @@ jobs:
         with:
           submodules: true 
 
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          node-version: '20'
+          ruby-version: 3.0
 
       - name: Install Bundler
-        run: gem install bundler -v 2.4.22
+        run: gem install bundler -v 2.4.22 --no-document --user-install
 
       - name: Build and deploy
         run: |
@@ -31,8 +31,8 @@ jobs:
           git reset --hard origin/main
 
           # Run any build commands if necessary
-          bundle install
-          bundle exec jekyll build
+          $HOME/.gem/ruby/*/bin/bundle install --path vendor/bundle
+          $HOME/.gem/ruby/*/bin/bundle exec jekyll build
 
           # npm & Hugo extension :
           npm install
