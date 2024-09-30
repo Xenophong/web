@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Content</title>
+</head>
+<body>
+    <h1>Protected Content</h1>
+    <p>This is the content that is protected by a password.</p>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+    <script>
+        function promptPassword() {
+            var password = prompt("Please enter the password:");
+            if (password === "passworld") {
+                window.location.href = "protected.html";
+                return false;
+            } else {
+                alert("Incorrect password.");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Password Protected Page</h1>
+    <button onclick="promptPassword()">Enter</button>
+</body>
+</html>
