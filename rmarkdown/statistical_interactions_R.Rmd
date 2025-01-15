@@ -1,0 +1,306 @@
+---
+title: "Statistical Interactions"
+author: "xg"
+date: "2024-02-19"
+output: html_document
+---
+
+## Methods
+### Interaction term on Linear models
+In statistics, interactions occur when the effect of one variable on the outcome depends on the level of another variable. It implies that the combined effect of two variables is not simply the sum of their individual effects. Interactions can significantly influence the interpretation of relationships between variables. For example, in a regression analysis, the effect of a predictor variable on the response variable may vary depending on the level of another predictor. Understanding and detecting interactions is crucial for accurate modeling and interpretation of data, as neglecting interactions can lead to misinterpretation of relationships and potentially flawed conclusions. Applications ranges from includes medical research, where treatment effectiveness might depend on patient characteristics, to marketing, where the impact of advertising on sales might be influenced by the type of product. There are two types of interactions:
+
+- **Synergy:** The combined effect of two variables is greater than the sum of their individual effects. This indicates a cooperative or enhancing relationship between the variables.
+- **Antagonism:** The combined effect is less than the sum of individual effects, suggesting a diminishing or inhibitory relationship.
+
+
+Interaction terms are introduced in statistical models to formally test and account for interactions. For instance, in a simple linear regression model: $Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \epsilon$. If there is an interaction between \(X_1\) and \(X_2\), an additional term like \(\beta_3X_1 \cdot X_2\) may be added.
+
+### Quantifying Associations
+Researchers often use Pearson's correlation coefficient (`r`) to quantify the linear relationship between genetic variants and gene expression. The formula for Pearson's correlation is: \[r = \frac{\sum{(X_i - \bar{X})(Y_i - \bar{Y})}}{\sqrt{\sum{(X_i - \bar{X})^2} \sum{(Y_i - \bar{Y})^2}}}\] where \(X_i\) and \(Y_i\) are individual data points and \(\bar{X}\) and \(\bar{Y}\) are the means of \(X\) and \(Y\), respectively.
+
+### Identifying Interactions:
+Statistical interaction models may involve terms like multiplicative interaction in a regression context. For two genetic variants \(X\) and \(Z\), an interaction term might be added like this: $Y = \beta_0 + \beta_1X + \beta_2Z + \beta_3(X \cdot Z) + \epsilon$, where \(Y\) is the outcome (gene expression tec), \(\beta_0, \beta_1, \beta_2, \beta_3\) are coefficients to be estimated, \(X \cdot Z\) represents the interaction term.
+
+### Variance Decomposition:
+Variance decomposition models are often used to estimate the contribution of individual predictors and their interactions to the overall variability in the outcome. For example: $\text{Total Variance} = \text{Variance}(X) + \text{Variance}(Z) + \text{Covariance}(X, Z)$
+
+### Distributions and Significance Testing:
+
+Researchers often assume that the residuals (\(\epsilon\)) in regression models follow a normal distribution. Normality is crucial for hypothesis testing and constructing confidence intervals. The t-distribution is often used in significance testing, especially for small sample sizes. The test statistic for a coefficient estimate \(\beta_i\) is:$t = \frac{\hat{\beta}_i - \beta_{i, \text{null}}}{\text{SE}(\hat{\beta}_i)}$, where $(\hat{\beta}_i)$ is the estimated coefficient, $(\beta_{i, \text{null}})$ is the null hypothesis value and $(\text{SE}(\hat{\beta}_i))$ is the standard error of the estimated coefficient.
+
+## Application with eQTL data
+
+## Logic for using it
+
+
+$Y_{expression}=β_ο+β_1G_{Genotype}+β_2C_{celltype}+β_3G_{Genotype}*C_{celltype}+e$
+
+It has already been prooved that unaccounted cellular heterogeineity can affect genetoype-gene expression $associations^1$.
+
+- different cell types within a tissue
+
+- relative proportions of each cell type across samples of the same tissue
+
+
+
+```{r, eval=FALSE}
+#!/usr/bin/Rscript
+
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+# -- -- # -- 	0 Libraries & functions   							-- # -- # -- # -- # -- # -- # 
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+
+# 0.1 Load necessary libraries and check dependencies
+packages <- c('dplyr', 'devtools', 'tidyverse', 'tidyr', 'stringr', 'data.table', 'tibble', 'truncnorm', 'matrixStats', 'DeconCell', 'magrittr', 'imputeTS')
+lapply(packages, require, character.only = TRUE) 
+
+
+# 0.2 Transpose the cell matrix
+mcell <- cell %>%
+  select(-biospecimen_repository_sample_id) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "rn") %>%
+  mutate(biospecimen_repository_sample_id = gsub(".", "-", rn, perl = FALSE, fixed = TRUE))
+
+# 0.3 Merge with lookup_srr_to_gtex
+finalcell <- mcell %>%
+  left_join(lookup_srr_to_gtex, by = "biospecimen_repository_sample_id") %>%
+  mutate(My_Tissue = gsub(" - ", "_", tissue, perl = FALSE, fixed = TRUE),
+         My_Tissue = gsub("[(|)]| ", "_", My_Tissue, perl = TRUE, fixed = TRUE))
+
+# 0.4 Select columns and cell types
+fcell <- finalcell %>%
+  select(My_Tissue, SUBJID, Epithelial_cells, Hepatocytes, Keratinocytes, Myocytes, Neurons, Neutrophils, Adipocytes)
+
+# 0.5 Write to file
+write.table(fcell, file = paste0(dm, "cell_types/GTEX.Decon.OFFICIAL.alltissues.txt"), sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE)
+```
+
+### Target of following section is to format, subset and get the overlap of the cell matrix, the gene expression and the genotypes:
+
+- **mtDNA Gene Expression final format for decon:**
+
+|X               | GTEX-111YS| GTEX-1122O| GTEX-1128S| GTEX-117XS|
+|:---------------|----------:|----------:|----------:|----------:|
+|ENSG00000198888 |   9.092345|   9.083416|   8.267962|   8.402680|
+|ENSG00000198763 |   9.082961|   9.202006|   8.826588|   9.461177|
+|ENSG00000198804 |   9.569482|   9.481207|   8.073715|   8.916104|
+|ENSG00000198712 |   9.558953|   9.645429|   8.886133|   9.084550|
+|ENSG00000228253 |   9.359708|   9.157678|   9.058587|   9.114270|
+
+- **Cell Proportions final format for decon:**
+
+|X          | Epithelial_cells| Hepatocytes| Keratinocytes| Myocytes|
+|:----------|----------------:|-----------:|-------------:|--------:|
+|GTEX-111YS |         34.03390|   2.3728814|             0| 54.16949|
+|GTEX-1122O |         33.27645|   0.9385666|             0| 52.55973|
+|GTEX-1128S |         32.51776|   3.7095501|             0| 46.56669|
+|GTEX-117XS |         27.23845|   0.4712535|             0| 57.49293|
+|GTEX-117YW |         32.57081|   3.9215686|             0| 45.64270|
+
+- **mtDNA Genotypes final format for decon:**
+
+|X        | GTEX-111YS| GTEX-1122O| GTEX-1128S| GTEX-117XS|
+|:--------|----------:|----------:|----------:|----------:|
+|mt.73_G  |          0|          0|          0|          0|
+|mt.456_T |          0|          0|          0|          0|
+|mt.462_T |          0|          0|          0|          0|
+|mt.477_C |          0|          0|          0|          0|
+|mt.489_C |          2|          2|          0|          0|
+
+```{r, eval=FALSE}
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+# -- -- # -- 	1 Data Engineering to format input data  							-- # -- # -- # -- # -- # -- # 
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+
+# 1.1 write raw cellcounts to outfile per tissue
+write_cell_counts <- function(tissue, fcell) {
+  running_tissue <- fcell %>%
+    filter(My_Tissue == tissue)
+
+  write.table(
+    running_tissue,
+    file = paste0('/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/cell_types/Cell.Counts.per.tissue/', tissue, ".GTEX.Decon.OFFICIAL.txt"),
+    sep = "\t", quote = FALSE, row.names = FALSE, col.names = TRUE
+  )
+
+# Write scaled cell counts to a file
+running_t <- select(running_tissue, -My_Tissue) %>%
+    distinct(SUBJID, .keep_all = TRUE) %>%
+    column_to_rownames(var = "SUBJID")
+
+  predicted.cellcounts.scaled <- (running_t / rowSums(running_t)) * 100
+
+  write.table(
+    predicted.cellcounts.scaled,
+    file = paste0("/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/cell_types/Cell.Counts.per.tissue.scaled/", tissue, ".predicted.cellcounts.scaled.txt"),
+    sep = "\t", quote = FALSE, row.names = TRUE, col.names = TRUE
+  )
+  print(tissue)
+}
+
+# 1.2 Apply the function to each tissue
+tissues %>% walk(~write_cell_counts(., fcell))
+
+
+for (r_tissue in tissues) {
+  # 1.3 Read mt Gene expression
+  exprdir <- "/no-backup/xenofon/Emperor/22_GTEX/master/phenotypes/norm_methods/mtgenes_log/"
+  gene_counts <- read.table(file.path(exprdir, paste0(r_tissue, "_mtgenes.txt")), header = TRUE, sep = "\t")
+  colnames(gene_counts) <- gsub(".", "-", colnames(gene_counts), perl = FALSE, fixed = TRUE)
+
+  # 1.4 Read corresponding cell counts
+  celldir <- "/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/cell_types/Cell.Counts.per.tissue.scaled/"
+  cellcounts <- read.table(file.path(celldir, paste0(r_tissue, ".predicted.cellcounts.scaled.txt")), header = TRUE, sep = "\t")
+  cellcounts$SUBID <- rownames(cellcounts)
+  cellcounts <- cellcounts %>% select(SUBID, everything())
+  rownames(cellcounts) <- NULL
+
+  # 1.5 Read MT genotypes
+  genodir <- "/no-backup/xenofon/Emperor/22_GTEX/master/mtgeno_allv8/per_tissue/"
+  g <- read.delim(file.path(genodir, paste0(r_tissue, '.v8.eur.maf01.recoded.raw')), header = TRUE, sep = ' ')
+  ge <- subset(g, select = -c(IID, PAT, MAT, SEX, PHENOTYPE))
+  nnn <- ge$FID
+  gen <- as.data.frame(t(ge[, -1]))
+  colnames(gen) <- nnn
+  geno_missing <- gen
+  geno_missing[is.na(geno_missing)] <- -1
+
+  # 1.6 Match the 3 data frames with the same individuals
+  geno_miss_TR <- geno_missing %>% rownames_to_column(var = "SUBID") %>% tibble::column_to_rownames(var = "SUBID")
+  gene_counts_TRANS <- gene_counts %>% tibble::column_to_rownames(var = "SUBID")
+
+  map <- Reduce(intersect, list(rownames(geno_miss_TR), rownames(cellcounts), rownames(gene_counts_TRANS)))
+  geno_sub <- geno_miss_TR[map, , drop = FALSE]
+  gene_sub <- gene_counts_TRANS[map, , drop = FALSE]
+  cell_sub <- cellcounts[cellcounts$SUBID %in% map, ]
+
+  # 1.7 Final format before saving
+  geno_subF <- t(geno_sub)[, order(colnames(geno_sub))]
+  geno_subF <- rownames_to_column(geno_subF, var = "X")
+
+  gene_subF <- t(gene_sub)[, order(colnames(gene_sub))]
+  gene_subF <- rownames_to_column(gene_subF, var = "X")
+
+  names(cell_sub)[1] <- "X"
+
+  # 1.8 Saving
+  finaloutdir <- "/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/untabed/"
+  write.table(gene_subF, file.path(finaloutdir, paste0(r_tissue, "_MT_Genes_Count_table.txt")), sep = "\t", quote = FALSE, col.names = TRUE, row.names = FALSE)
+  write.table(geno_subF, file.path(finaloutdir, paste0(r_tissue, "_MTMatrix_Genotype_missing.txt")), quote = FALSE, row.names = FALSE, col.names = TRUE, sep = "\t")
+  write.table(cell_sub, file.path(finaloutdir, paste0(r_tissue, "_MT_Cell_proportions.txt")), quote = FALSE, row.names = FALSE, col.names = TRUE, sep = "\t")
+
+  cat(paste0("Done writing % for ", r_tissue, "\n"))
+}
+
+
+
+# 1.9 input for testing gene-snp combinations
+
+tissues=c("Artery_Aorta", "Brain_Substantia_nigra", "Uterus", "Cells_EBV-transformed_lymphocytes", "Brain_Spinal_cord_cervical_c-1", "Minor_Salivary_Gland", "Brain_Amygdala", "Vagina", "Brain_Anterior_cingulate_cortex_BA24", "Ovary", "Small_Intestine_Terminal_Ileum", "Brain_Hippocampus", "Brain_Putamen_basal_ganglia", "Brain_Cerebellar_Hemisphere", "Brain_Hypothalamus", "Brain_Frontal_Cortex_BA9", "Brain_Caudate_basal_ganglia", "Artery_Coronary", "Liver", "Spleen", "Brain_Nucleus_accumbens_basal_ganglia", "Prostate", "Brain_Cortex", "Brain_Cerebellum", "Adrenal_Gland", "Pituitary", "Pancreas", "Stomach", "Colon_Sigmoid", "Testis", "Esophagus_Gastroesophageal_Junction", "Colon_Transverse", "Heart_Atrial_Appendage", "Heart_Left_Ventricle", "Breast_Mammary_Tissue",  "Esophagus_Muscularis", "Adipose_Visceral_Omentum", "Cells_Cultured_fibroblasts", "Esophagus_Mucosa", "Skin_Not_Sun_Exposed_Suprapubic", "Lung", "Nerve_Tibial", "Artery_Tibial", "Adipose_Subcutaneous", "Thyroid", "Skin_Sun_Exposed_Lower_leg", "Whole_Blood", "Muscle_Skeletal")
+features=c("ENSG00000198695", "ENSG00000198712", "ENSG00000228253", "ENSG00000212907", "ENSG00000198938", "ENSG00000198899", "ENSG00000198888", "ENSG00000198886", "ENSG00000198840", "ENSG00000198804", "ENSG00000198786", "ENSG00000198763", "ENSG00000198727")
+for (r_tissue in tissues){
+	mtcombs=NULL
+	for (K in features){
+		#prepare snps
+		genodir="/no-backup/xenofon/Emperor/22_GTEX/master/mtgeno_allv8/per_tissue/"
+		g=read.delim(paste0(genodir, r_tissue, '.v8.eur.maf01.recoded.raw'), header=T, sep=' ')
+		#g=utils::read.table("/no-backup/xenofon/Emperor/22_GTEX/master/mtgeno_allv8/allv8.eur.maf01.recode.raw", header=T)
+		ge=g[, -c(1:6)]
+		snps=colnames(ge)
+		for (s in snps){
+			newline =  data.frame(gene=paste0(K), snp=paste0(s))
+			mtcombs=rbind(mtcombs, newline)
+		}
+	}
+	names(mtcombs)[1]='gene'; names(mtcombs)[2]='snp'
+	out="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/cis_combos/"
+	write.table(mtcombs, paste0(out, "GTEX_cis_mtcombs_", r_tissue, ".txt"), row.names=F, col.names=T, quote=F, sep="\t")
+	print(paste0('done with ', r_tissue))
+}
+```
+
+```{bash, eval=FALSE}
+
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+# -- -- # -- 	2 JAVA - TAB First position and save script in each tissue directory  							-- # -- # -- # -- # -- # -- # 
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+
+tissues=$(echo "Artery_Aorta" "Brain_Substantia_nigra" "Uterus" "Cells_EBV-transformed_lymphocytes" "Brain_Spinal_cord_cervical_c-1" "Minor_Salivary_Gland" "Brain_Amygdala" "Vagina" "Brain_Anterior_cingulate_cortex_BA24" "Ovary" "Small_Intestine_Terminal_Ileum" "Brain_Hippocampus" "Brain_Putamen_basal_ganglia" "Brain_Cerebellar_Hemisphere" "Brain_Hypothalamus" "Brain_Frontal_Cortex_BA9" "Brain_Caudate_basal_ganglia" "Artery_Coronary" "Liver" "Spleen" "Brain_Nucleus_accumbens_basal_ganglia" "Prostate" "Brain_Cortex" "Brain_Cerebellum" "Adrenal_Gland" "Pituitary" "Pancreas" "Stomach" "Colon_Sigmoid" "Testis" "Esophagus_Gastroesophageal_Junction" "Colon_Transverse" "Heart_Atrial_Appendage" "Heart_Left_Ventricle" "Breast_Mammary_Tissue"  "Esophagus_Muscularis" "Adipose_Visceral_Omentum" "Cells_Cultured_fibroblasts" "Esophagus_Mucosa" "Skin_Not_Sun_Exposed_Suprapubic" "Lung" "Nerve_Tibial" "Artery_Tibial" "Adipose_Subcutaneous" "Thyroid" "Skin_Sun_Exposed_Lower_leg" "Whole_Blood" "Muscle_Skeletal")
+
+for tissue in $tissues;
+do echo $tissue; 
+dirin="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/untabed/$tissue"
+dirot="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/tab/$tissue"
+src="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/src"
+echo -e "
+awk  '{gsub(\"X\",\"\",\$0""); print;}' $dirin"_MT_Cell_proportions.txt" > $dirot"_MT_Cell_proportions_java_TAB.txt" \
+\nawk  '{gsub(\"X\",\"\",\$0""); print;}' $dirin"_MT_Genes_Count_table.txt" > $dirot"_MT_Genes_Count_table_java_TAB.txt" \
+\nawk  '{gsub(\"X\",\"\",\$0)""; print;}' $dirin"_MTMatrix_Genotype_missing.txt" > $dirot"_MTMatrix_Genotype_missing_java_TAB.txt" " >> $src/TAB_files_java_input.sh
+done 
+
+
+awk  '{gsub("X","",$0); print;}' /no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/untabed/Artery_Aorta_MT_Cell_proportions.txt > /no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/tab/Artery_Aorta_MT_Cell_proportions_java_TAB.txt 
+awk  '{gsub("X","",$0); print;}' /no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/untabed/Artery_Aorta_MT_Genes_Count_table.txt > /no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/tab/Artery_Aorta_MT_Genes_Count_table_java_TAB.txt 
+awk  '{gsub("X","",$0); print;}' /no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/untabed/Artery_Aorta_MTMatrix_Genotype_missing.txt > /no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/tab/Artery_Aorta_MTMatrix_Genotype_missing_java_TAB.txt 
+
+
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+# -- -- # -- 	3.1 DECON RUN						-- # -- # -- # -- # -- # -- # 
+# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+
+java -jar deconvolution -c <file containing cellcounts> \
+                        -e <file containing expression data> \
+                        -g <file containing genotypes>  \
+                        -o <output directory> \
+                        -sn <file with SNP and gene combination to test>
+                        
+
+decon_run="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/software/Decon-eQTL-v1.3.0-jar-with-dependencies.jar"
+src_run="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/pipeline/src"
+dir="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/tab"
+outdir="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/pipeline/mtcis"
+
+for tissue in $tissues;
+do echo $tissue; 
+snpsToTest="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/master/input_files/cis_combos/GTEX_cis_mtcombs_${tissue}.txt"
+echo -e "java -jar "$decon_run" --cellcount $dir/$tissue"_MT_Cell_proportions_java_TAB.txt" --expression $dir/$tissue"_MT_Genes_Count_table_java_TAB.txt" --genotype $dir/$tissue"_MTMatrix_Genotype_missing_java_TAB.txt" --snpsToTest $snpsToTest --outfolder $outdir/$tissue/" >> $src_run/Decon_Run_all.sh
+done
+#./runner Decon_Run_all.sh 5 deconrunlog_v3
+```
+
+
+```{r, eval=FALSE}
+
+ 	# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+	# -- -- # -- 				 0. R Session | read-write results						-- # -- # -- # -- # -- # -- # 
+	# -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # # -- -- # -- # -- # -- # # 
+
+dcis="/no-backup/xenofon/Emperor/22_GTEX/pipeline/decon/pipeline/mtcis/"
+mt_in=paste0("/no-backup/xenofon/Emperor/22_GTEX/master/mtgeno_allv8/per_tissue/", tissue, ".v8.eur.maf01.recoded.raw")
+DECON_CIS=NULL
+for (tissue in tissues){
+	mt_variants=fread(paste0(mt_in), sep=' ', header=T, drop=c('FID','IID', 'PAT', 'MAT', 'SEX', 'PHENOTYPE'))
+    r_variants=colnames(mt_variants)
+	running_res=read.delim(paste0(dcis, tissue, "/deconvolutionResults.csv"))
+	r_res=running_res %>% separate(X, c("mt_gene","mt_snp", "allele"), sep = "([_])")
+	r_res$mapping_key=paste(r_res$mt_snp, r_res$allele, sep="_")
+	r_res=r_res[which(r_res$mapping_key %in% r_variants),]
+	running_res$tissue=paste0(tissue)
+	DECON_CIS=rbind(DECON_CIS, running_res)
+	print(tissue)
+}
+write.table(DECON_CIS, "Deconvolution_Results_mtCis_eQTL.txt", row.names=F, col.names=T, sep="\t", quote=F)
+```
+
+### Results output
+
+|X                        | Epithelial_cells_pvalue| Hepatocytes_pvalue| Keratinocytes_pvalue| Myocytes_pvalue| Neurons_pvalue| Neutrophils_pvalue| Adipocytes_pvalue| Beta1_Epithelial_cells| Beta2_Hepatocytes| Beta3_Keratinocytes| Beta4_Myocytes| Beta5_Neurons| Beta6_Neutrophils| Beta7_Adipocytes| Beta8_Epithelial_cells.GT| Beta9_Hepatocytes.GT| Beta10_Keratinocytes.GT| Beta11_Myocytes.GT| Beta12_Neurons.GT| Beta13_Neutrophils.GT| Beta14_Adipocytes.GT|
+|:------------------------|-----------------------:|------------------:|--------------------:|---------------:|--------------:|------------------:|-----------------:|----------------------:|-----------------:|-------------------:|--------------:|-------------:|-----------------:|----------------:|-------------------------:|--------------------:|-----------------------:|------------------:|-----------------:|---------------------:|--------------------:|
+|ENSG00000198695_mt.73_G  |               0.1388415|          1.0000000|                    1|       0.7192000|      0.9136244|          0.6229313|         0.9999995|              0.0796084|         0.0515894|                   0|      0.0792337|             0|         0.0656422|        0.0000000|                -0.0161572|            0.0000000|                       0|          0.1011837|         0.5017418|             0.0021421|                    0|
+|ENSG00000198695_mt.456_T |               0.1573261|          0.8559781|                    1|       1.0000000|      0.6479893|          0.3988005|         1.0000000|              0.0914355|         0.0500852|                   0|      0.0802174|             0|         0.0546581|        0.0402169|                 0.1056355|            0.0790896|                       0|          0.0000000|         1.8395169|            -0.0061332|                    0|
+|ENSG00000198695_mt.462_T |               1.0000000|          0.4261962|                    1|       0.4408156|      1.0000000|          0.8827318|         1.0000000|              0.0928946|         0.0471466|                   0|      0.0068108|             0|         0.0670903|        0.0395130|                 0.0000000|            1.1260479|                       0|         -0.0361222|         0.0000000|             0.0006398|                    0|
+|ENSG00000198695_mt.477_C |               0.2814321|          1.0000000|                    1|       0.4030528|      1.0000000|          0.2966627|         1.0000000|              0.0923167|         0.0482364|                   0|      0.0785618|             0|         0.0431133|        0.0391140|                 0.1116269|            0.0000000|                       0|          0.1131244|         0.0000000|            -0.0120110|                    0|
+|ENSG00000198695_mt.489_C |               0.1250321|          0.8766808|                    1|       0.0269591|      1.0000000|          0.1158498|         1.0000000|              0.0000000|         0.0000000|                   0|      0.0000000|             0|         0.0670702|        0.0479426|                -0.0466857|           -0.0220676|                       0|         -0.0416633|         0.0000000|             0.0031348|                    0|
+
