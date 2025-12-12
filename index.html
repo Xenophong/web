@@ -30,10 +30,27 @@
    ================================================== -->   
 	<script src="js/modernizr.js"></script>
 	<script src="js/pace.min.js"></script>
+	
+	<!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your actual Measurement ID -->
+	<!-- Get your ID from: https://analytics.google.com/ -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-XXXXXXXXXX', {
+			'anonymize_ip': true, // GDPR-friendly
+			'allow_google_signals': false,
+			'allow_ad_personalization_signals': false
+		});
+	</script>
+	
+	<!-- Custom Analytics Tracking -->
+	<script src="js/analytics.js"></script>
 
    <!-- favicons
 	================================================== -->
-	
+	<link rel="icon" type="image/png" href="favicon.png">
 	
 </head>
 
@@ -76,18 +93,20 @@
 
 
 <div class="row button-section">
-   <a href="Xenophon_CV.pdf" title="Download CV" class="button button-primary">Download CV</a>		
+   <a href="Xenophon_CV.pdf" title="Download CV" class="button button-primary">Download CV</a>
+   <a href="mailto:xgiannoulis@proton.me?subject=Contact%20from%20Website" title="Email Me" class="button stroke">Email Me</a>		
 </div> 
 	
 		</div> <!-- /row -->
 	</div> <!-- /intro-content --> 
 
    	<ul class="intro-social">        
-         <li><a href="https://github.com/xenophong"><i class="fa fa-github"></i></a></li>
-         <li><a href="https://bsky.app/profile/xenophong.bsky.social"><i class="fa fa-twitter"></i></a></li>
-         <li><a href="https://www.linkedin.com/in/xenog/"><i class="fa fa-linkedin"></i></a></li>
-		 <li><a href="https://substack.com/@xenophong"><i class="fa fa-rss-square"></i></a></li>
-		 <li><a href="https://syntixi.de/"><i class="fa fa-volume-up"></i></a></li>
+         <li><a href="https://github.com/xenophong" title="GitHub"><i class="fa fa-github"></i></a></li>
+         <li><a href="https://bsky.app/profile/xenophong.bsky.social" title="Bluesky"><i class="fa fa-twitter"></i></a></li>
+         <li><a href="https://www.linkedin.com/in/xenog/" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+		 <li><a href="https://substack.com/@xenophong" title="Substack"><i class="fa fa-rss-square"></i></a></li>
+		 <li><a href="https://syntixi.de/" title="Syntixi"><i class="fa fa-volume-up"></i></a></li>
+		 <li><a href="mailto:xgiannoulis@proton.me?subject=Contact%20from%20Website" title="Email Me"><i class="fa fa-envelope"></i></a></li>
 	</ul> <!-- /intro-social -->      	
 
    </section> <!-- /intro -->
@@ -114,7 +133,7 @@
    		</div>   		
    	</div> <!-- /section-intro -->
 
-   	<div class="row ab"<img src="favicon.png" alt="">
+   	<div class="row about-content">
 
    		<div class="col-six tab-full">
 
@@ -134,7 +153,7 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
    				</li>
    				<li>
    					<strong>Email:</strong>
-   					<span>xgiannoulis@proton.me</span>
+   					<span><a href="mailto:xgiannoulis@proton.me?subject=Contact%20from%20Website">xgiannoulis@proton.me</a></span>
    				</li>
    			</ul> <!-- /info-list -->
    			<!-- <h4>Languages</h4> 
@@ -191,6 +210,7 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
 <div class="row button-section">
    <div class="col-twelve">
       <a href="Xenophon_CV.pdf" title="Download CV" class="button button-primary">Download CV</a>
+      <a href="mailto:xgiannoulis@proton.me?subject=Contact%20from%20Website" title="Email Me" class="button stroke">Email Me</a>
    </div>   		
 </div>
 
@@ -403,7 +423,7 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
 	   				</div>
 
 					<div class="timeline-header">
-						<h3 style="white-space: nowrap;">B.Sc. (Hons)</span></h3>
+						<h3 style="white-space: nowrap;">B.Sc. (Hons)</h3>
 						<p>October 2012 - April 2018</p>
 					</div>
 					
@@ -433,7 +453,7 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
 		<h5>Contributions</h5>
 		<h1>A list of my academic contributions.</h1>
    	</div>
-   	<div class="row ab"<img src="favicon.png" alt="">
+   	<div class="row blog-content">
    	<div class="col-six tab-full">
 		
 
@@ -590,7 +610,7 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
 
       	<div class="col-six tab-full">
 	      	<div class="copyright">
-		        	<span>© Copyright Kards 2016.</span> 
+		        	<span>© Copyright 2025 Xenophon Giannoulis.</span> 
 		        	<span>Design by <a href="http://www.styleshout.com/">styleshout</a></span>	         	
 		         </div>		                  
 	      	</div>

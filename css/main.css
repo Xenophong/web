@@ -1647,9 +1647,13 @@ header .logo a {
 }
 .button-section .button {
 	width: 250px;
+	margin: 0 1rem;
 }
 .button-section [class*="col-"] .button:first-child {
-	margin-right: 4rem;
+	margin-right: 2rem;
+}
+.button-section [class*="col-"] .button:last-child {
+	margin-left: 2rem;
 }
 
 /* ------------------------------------------------------------------- 
@@ -2717,3 +2721,249 @@ footer .copyright span:last-child::after {
 }
 
 /*# sourceMappingURL=main.css.map */
+
+/* ===================================================================
+ * Additional Enhancements for Better Visual Design
+ * =================================================================== */
+
+/* Enhanced blog/contributions card styling */
+.blog-list article {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2rem;
+    border-radius: 4px;
+    background: #fafafa;
+    margin-bottom: 3rem;
+}
+
+.blog-list article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+}
+
+/* Improved intro social icons */
+.intro-social li a {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.intro-social li a:hover {
+    transform: translateY(-3px) scale(1.1);
+    color: #FF0077 !important;
+}
+
+/* Enhanced profile image styling */
+.intro-info img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.intro-info img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Better button hover effects */
+.button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button.button-primary:hover {
+    box-shadow: 0 5px 15px rgba(49, 49, 49, 0.4);
+}
+
+/* Enhanced timeline styling */
+.timeline-block {
+    transition: opacity 0.3s ease;
+}
+
+.timeline-content {
+    transition: padding-left 0.3s ease;
+}
+
+.timeline-content h4 a {
+    transition: color 0.3s ease;
+}
+
+.timeline-content h4 a:hover {
+    color: #FF0077;
+}
+
+/* Improved skill bars */
+.skill-bars li {
+    transition: background 0.3s ease;
+}
+
+.skill-bars li .progress {
+    transition: width 1s ease-in-out;
+}
+
+/* Better section transitions */
+section {
+    transition: opacity 0.3s ease;
+}
+
+/* Enhanced header navigation */
+.header-nav li a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.header-nav li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 20px;
+    left: 50%;
+    background-color: #FF0077;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.header-nav li a:hover::after {
+    width: 80%;
+}
+
+/* Improved spacing in about section */
+.about-content {
+    padding: 2rem 0;
+}
+
+.about-content h2 {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.about-content h4 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    color: #FF0077;
+}
+
+/* Better info list styling */
+.info-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.3s ease;
+}
+
+.info-list li:hover {
+    background: #fafafa;
+    padding-left: 1rem;
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+.info-list li a {
+    color: #888888;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.info-list li a:hover {
+    color: #FF0077;
+    text-decoration: underline;
+}
+
+/* Enhanced blog date styling */
+.blog-date {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.blog-date a {
+    transition: all 0.3s ease;
+}
+
+.blog-date a:hover {
+    text-decoration: underline;
+}
+
+/* Better h4 styling in contributions */
+.blog-list h4.h02 {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.blog-list h4.h02 a {
+    transition: color 0.3s ease;
+}
+
+.blog-list h4.h02 a:hover {
+    color: #FF0077;
+}
+
+/* Improved blog category tags */
+.blog-cat p {
+    line-height: 1.8;
+    margin-top: 1rem;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced intro section */
+.intro-content h1 {
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Better mobile responsiveness for contributions */
+@media only screen and (max-width: 768px) {
+    .blog-list article {
+        padding: 1.5rem !important;
+        margin-bottom: 2rem;
+    }
+    
+    .blog-list article:nth-child(2n+1),
+    .blog-list article:nth-child(2n+2) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .button-section .button {
+        width: 100%;
+        margin: 0.5rem 0;
+        display: block;
+    }
+    
+    .button-section [class*="col-"] .button:first-child,
+    .button-section [class*="col-"] .button:last-child {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Enhanced section intro spacing */
+.section-intro {
+    margin-bottom: 5rem;
+}
+
+/* Better visual separation between sections */
+section + section {
+    border-top: 1px solid transparent;
+}

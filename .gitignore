@@ -1,0 +1,52 @@
+# Backup and temporary files
+*.css~
+*.html~
+*.js~
+*~
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.project
+.classpath
+.settings/
+
+# Documentation and guide files (hidden from public repo)
+ANALYTICS_SETUP.md
+QUICK_START_ANALYTICS.md
+PRIVATE_REPO_GUIDE.md
+HIDDEN_FILES_SUMMARY.md
+DEPLOYMENT_CHECKLIST.md
+README.md
+cleanup-repo.sh
+
+# Private/protected files (uncomment if you want to hide these)
+# protected.html
+# inc/sendEmail.php
+
+# Environment and config files
+.env
+.env.local
+config.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node modules (if you add any build tools)
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Personal notes (if any)
+notes.txt
+TODO.md
+private/
+
