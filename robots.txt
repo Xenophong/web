@@ -1,0 +1,11 @@
+# Robots.txt for xenophong.github.io/web/
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://xenophong.github.io/web/sitemap.xml
+
+# Disallow unnecessary files
+Disallow: /inc/
+Disallow: /*.css~
+

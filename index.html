@@ -13,7 +13,7 @@
 	<meta name="author" content="Xenophon Giannoulis" >
 	<meta property="og:title" content="Xenophon Giannoulis | Resume and Presentation">
 	<meta property="og:description" content="Resume and presentation of Xenophon Giannoulis, a data scientist and statistical genetics researcher.">
-	<meta property="og:image" content="images/xphoto.jpeg">
+	<meta property="og:image" content="images/IMG_1114.jpeg">
 	<meta property="og:url" content="https://xenophong.github.io/web/">
 
    <!-- mobile specific metas
@@ -31,14 +31,14 @@
 	<script src="js/modernizr.js"></script>
 	<script src="js/pace.min.js"></script>
 	
-	<!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your actual Measurement ID -->
+	<!-- Google Analytics 4 - Measurement ID -->
 	<!-- Get your ID from: https://analytics.google.com/ -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFL6PZPRQH"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-		gtag('config', 'G-XXXXXXXXXX', {
+		gtag('config', 'G-XFL6PZPRQH', {
 			'anonymize_ip': true, // GDPR-friendly
 			'allow_google_signals': false,
 			'allow_ad_personalization_signals': false
@@ -101,11 +101,11 @@
 	</div> <!-- /intro-content --> 
 
    	<ul class="intro-social">        
-         <li><a href="https://github.com/xenophong" title="GitHub"><i class="fa fa-github"></i></a></li>
-         <li><a href="https://bsky.app/profile/xenophong.bsky.social" title="Bluesky"><i class="fa fa-twitter"></i></a></li>
-         <li><a href="https://www.linkedin.com/in/xenog/" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
-		 <li><a href="https://substack.com/@xenophong" title="Substack"><i class="fa fa-rss-square"></i></a></li>
-		 <li><a href="https://syntixi.de/" title="Syntixi"><i class="fa fa-volume-up"></i></a></li>
+         <li><a href="https://github.com/xenophong" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a></li>
+         <li><a href="https://bsky.app/profile/xenophong.bsky.social" title="Bluesky" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a></li>
+         <li><a href="https://www.linkedin.com/in/xenog/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a></li>
+		 <li><a href="https://substack.com/@xenophong" title="Substack" target="_blank" rel="noopener noreferrer"><i class="fa fa-rss-square"></i></a></li>
+		 <li><a href="https://syntixi.de/" title="Syntixi" target="_blank" rel="noopener noreferrer"><i class="fa fa-volume-up"></i></a></li>
 		 <li><a href="mailto:xgiannoulis@proton.me?subject=Contact%20from%20Website" title="Email Me"><i class="fa fa-envelope"></i></a></li>
 	</ul> <!-- /intro-social -->      	
 
@@ -119,13 +119,15 @@
    		<div class="col-twelve">
 
    			<h5>About</h5>
-   			<h1>296 bytes about myself.</h1>
+   			<h1>157 bytes about myself.</h1>
 
    			<div class="intro-info">
 
-   				<img src="images/IMG_1114.jpeg" alt="Profile Picture">
+   				<img src="images/IMG_1114.jpeg" alt="Profile Picture of Xenophon Giannoulis" loading="lazy">
 
-   				<p class="lead"> My research aims to make human genomic data more interpretable and actionable, particularly for use in translational and clinical settings. I'm especially interested in cross-genomic regulation, causal inference, and integrating multi-layered biological data into decision-grade systems.				</p>
+   				<p class="lead">
+					I lead the design of genomic evidence systems that translate human genetic data into high-confidence inputs for drug discovery and clinical decision-making.				</p>
+
    			</div>   			
  
 			   
@@ -137,10 +139,19 @@
 
    		<div class="col-six tab-full">
 
-   			<h2>Profile</h2>
-   			<p>I'm a statistical geneticist working at the intersection of genomics, AI, and translational medicine. I currently work at Pheiron, where I help develop systems that turn complex biological data into causal evidence to guide drug discovery and clinical translation.
-My academic training spans machine learning, statistical genetics, and multi-omic integration. My PhD work at Helmholtz Pioneer Campus focused on cross-genomic regulation — specifically how mitochondrial and nuclear genomes interact to shape gene expression across tissues. I later contributed to the Alzheimer’s Disease Atlas by rearchitecting its data integration pipeline using graph-based methods.
-I'm drawn to projects where systems thinking meets rigorous computation — and where data complexity is an opportunity, not a burden.</p>
+		<h2>Profile</h2>
+
+		<p>
+		I am a statistical geneticist and genomic platform lead operating at the intersection of genomics, AI, and translational medicine. At Pheiron, I lead the design of biobank-scale genomic evidence systems that translate human genetic data into actionable inputs for drug development and clinical decision-making.
+		</p>
+
+		<p>
+		My work combines statistical genetics, causal inference, and multi-omic integration, with an emphasis on building robust, production-grade platforms. I have led efforts spanning cross-genomic regulation—most notably tissue-specific mitochondrial–nuclear gene regulation—and large-scale graph-based integration of biomedical knowledge. I am drawn to problems where scientific rigor, system architecture, and translational impact are addressed within a unified integrated framework.
+		</p>
+
+		<p>
+		These systems are designed to support causal interpretation, target validation, biomarker development, and clinical prioritization at decision-making scale.
+		</p>
 			<h4>General Info</h4>
    			<ul class="info-list">
    				<li>
@@ -176,10 +187,20 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
    		</div>
 
    		<div class="col-six tab-full">
-  <h2>Technical Depth</h2>
-  <p>
-	I design and implement computational frameworks that support evidence generation from human genomic data. My strengths lie in bridging statistical genetics with system-level thinking — whether it’s developing scalable GWAS and eQTL pipelines, integrating multi-omic datasets, or engineering data layers for causal inference. I work fluently across <b>R</b> (Bioconductor, Rshiny), <b>Python</b> (pandas, Limix), and <b>C/C++</b> (PLINK, REGENIE, LDAK, GCTA), and have led projects involving <b>Neo4j</b> graph models, <b>SPARQL/RDF</b> integration, and cloud-ready analytics platforms. Beyond tools, I focus on reproducibility, robustness, and aligning computational strategy with scientific objectives.
-  </p>
+		<h2>Technical Depth</h2>
+
+		<p>
+		I work fluently across <b>R</b> (Bioconductor, Shiny), <b>Python</b> (Polars, Limix), and <b>C/C++</b> (PLINK, REGENIE, LDAK, GCTA), and have led projects using <b>Neo4j</b>, <b>RDF/SPARQL</b>, and cloud‑ready analytics platforms.
+		</p>
+
+		<p>
+		On the platform side, I build queryable data catalogs on Apache Iceberg/Parquet with SQL/DuckDB analytic layers and REST interfaces for gene, variant, and phenotype‑level lookups, backed by production‑grade QC, validation, and monitoring. My experience spans DNAnexus, AWS/S3, Docker, and reproducible workflows for biobank‑scale analyses, together with methods expertise in GWAS, PheWAS, eQTL/ct‑eQTL mapping, PRS, rare‑variant burden tests, fine‑mapping, and causal follow‑up (colocalization, mediation, Mendelian randomization). 
+		</p>
+
+		<p>
+		Beyond tools, I focus on reproducibility, robustness, and aligning computational strategy with scientific and translational objectives.
+		</p>
+
 
   <ul class="skill-bars">
     <li>
@@ -187,19 +208,19 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
       <strong>Statistical Genetics</strong>
     </li>
     <li>
-      <div class="progress percent90"><span>90%</span></div>
+      <div class="progress percent95"><span>90%</span></div>
       <strong>Data Integration & Pipelines</strong>
     </li>
     <li>
-      <div class="progress percent90"><span>90%</span></div>
+      <div class="progress percent95"><span>90%</span></div>
       <strong>Machine Learning</strong>
     </li>
     <li>
-      <div class="progress percent85"><span>85%</span></div>
+      <div class="progress percent90"><span>90%</span></div>
       <strong>Bioinformatics</strong>
     </li>
     <li>
-      <div class="progress percent85"><span>85%</span></div>
+      <div class="progress percent90"><span>90%</span></div>
       <strong>Knowledge Graphs & Neo4j</strong>
     </li>
   </ul>
@@ -259,7 +280,7 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
 					<div class="timeline-content">
 					<h4><a href="https://www.pheiron.com" target="_blank">Pheiron</a></h4>
 					<p>
-						Designing genomic evidence systems that support clinical translation and drug discovery. My work spans integration of the largest human genetic cohorts, development of scalable analytical pipelines, and platform design — combining AI and statistical genetics to extract causal insight from population-scale multi-omic data.
+						At Pheiron, I lead the design of genomic evidence systems that support clinical translation and drug discovery, from data ingestion to decision‑facing outputs. My work spans integrating large biobank and disease cohorts (including UK Biobank, FinnGen, and GTEx), building scalable GWAS/eQTL and burden‑testing pipelines, and shaping platform architecture that combines AI and statistical genetics to produce causal, decision‑grade readouts from population‑scale multi‑omic data.
 					</p>
 					</div>
 
@@ -273,26 +294,32 @@ I'm drawn to projects where systems thinking meets rigorous computation — and 
 					<div class="timeline-content">
 						<h4> <a href="https://www.helmholtz-munich.de/helmholtz-pioneer-campus" target="_blank" > Helmholtz Institute of Computational Biology </a></h4>
 						<p> 
-						Joined the Computational Neurobiology Group at Helmholtz Computational Health Center to integrate large-scale omics data into the Alzheimer’s Disease Atlas using the Neo4j database. 
-						I develop unified scoring schemas to harmonize multi-omics and phenotypic data, enabling the prioritization of candidate drugs through advanced network-based and AI-driven methodologies.
+						Joined the Computational Neurobiology Group at Helmholtz Computational Health Center to modernize the Alzheimer’s Disease Atlas by integrating large‑scale omics data into a Neo4j‑backed knowledge graph. I designed unified scoring schemes and harmonization workflows for multi‑omic and phenotypic data, enabling network‑ and AI‑driven prioritization of therapeutic targets and candidate drugs.
 						</p>
 					</div>
 
 
 					<div class="timeline-header">
-						<h3>Doctoral Researcher </h3>
+						<h3>Scientific Researcher</h3>
 						<p>June 2020 - December 2024</p>
+						</div>
 
-					</div>
-
-					<div class="timeline-content">
-						<h4> <a href="https://www.helmholtz-munich.de/helmholtz-pioneer-campus" target="_blank" > Helmholtz Pioneer Campus </a></h4>
-						<p> 
-						As a graduate student at the Munich School of Data Science <a href="https://www.mu-ds.de/" target="_blank" > (MUDS) </a>, I joined the <a href="https://www.pioneercampus.org/themenmenue-links/about-us0/principal-investigators/na-cai/index.html" target="_blank">Institute of Translational Genetics</a> to research the genetic basis of mental health disorders. 
-						I designed architectures, trained models, and conducted statistical analyses on genetic data to understand human health and disease. Additionally, I co-organized two retreats at MUDS, overseeing speaker invitations and agenda management.
+						<div class="timeline-content">
+						<h4>
+							<a href="https://www.helmholtz-munich.de/helmholtz-pioneer-campus" target="_blank">
+							Helmholtz Pioneer Campus
+							</a>
+						</h4>
+						<p>
+							Funded through the highly competitive Munich School of Data Science
+							<a href="https://www.mu-ds.de/" target="_blank">(MUDS)</a>, I worked as a scientific researcher at the
+							<a href="https://www.pioneercampus.org/themenmenue-links/about-us0/principal-investigators/na-cai/index.html" target="_blank">
+							Institute of Translational Genetics
+							</a>, where I led work on mitochondrial–nuclear regulation across 40+ human tissues, building multi‑tissue atlases of gene expression and mito‑nuclear control.
+							This work produced first‑author and co‑first‑author manuscripts on mito‑nuclear gene expression regulation and tissue‑specific mtDNA heteroplasmy (both under revision at Nature Communications), and involved designing large‑scale WGS/RNA‑seq pipelines, causal inference workflows, and cross‑disciplinary collaborations, alongside co‑organizing two MUDS retreats and their scientific programs.
 						</p>
-					</div>
-					
+						</div>
+
 					
 				</div> <!-- /timeline-block -->
 
