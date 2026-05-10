@@ -1,671 +1,708 @@
 <!DOCTYPE html>
-<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xenophon Giannoulis — Translational Genomics</title>
+<meta name="description" content="Xenophon Giannoulis, PhD. Translational genomics, genomic data infrastructure, and biomedical AI. Joining GHGA at DKFZ Heidelberg, July 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+<style>
+/* ─── Art direction: Researcher · dark-first monochrome
+   Palette: near-black surfaces, white text, single teal accent for links only
+   Typography: Inter — single family, weight contrast only
+   Density: spacious, breathing room ─── */
 
-   <!--- basic page needs
-   ================================================== -->
-   <meta charset="utf-8">
-	<title>Xenophon Giannoulis | Resume and Presentation</title>
-	<meta name="description" content="Resume and presentation of Xenophon Giannoulis, a data scientist and statistical genetics researcher.">  
-	<meta name="Keyword" content="Xenophon Giannoulis, machine learning, deep learning, genetics, genomics, bioinformatics, researcher, MUDS, ITG, Data analysis, Statistical analysis, Machine learning algorithms, Predictive modeling, mtDNA, Multi-omics, GWAS, eQTL, Epigenetics" >
-	<meta name="author" content="Xenophon Giannoulis" >
-	<meta property="og:title" content="Xenophon Giannoulis | Resume and Presentation">
-	<meta property="og:description" content="Resume and presentation of Xenophon Giannoulis, a data scientist and statistical genetics researcher.">
-	<meta property="og:image" content="images/IMG_1114.jpeg">
-	<meta property="og:url" content="https://xenophong.github.io/web/">
+:root {
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+  --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;
+  --space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;
+  --space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;
+  --radius-sm:0.375rem;--radius-md:0.5rem;--radius-lg:0.75rem;--radius-full:9999px;
+  --transition-interactive:180ms cubic-bezier(0.16,1,0.3,1);
+  --content-narrow:640px;--content-default:900px;--content-wide:1100px;
+  --font-body:'Inter','Helvetica Neue',sans-serif;
+}
 
-   <!-- mobile specific metas
-   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+/* DARK (default) */
+:root,[data-theme="dark"] {
+  --color-bg:#0a0a0a;
+  --color-surface:#111111;
+  --color-surface-2:#161616;
+  --color-surface-offset:#1a1a1a;
+  --color-border:rgba(255,255,255,0.08);
+  --color-divider:rgba(255,255,255,0.06);
+  --color-text:#e8e8e8;
+  --color-text-muted:#888888;
+  --color-text-faint:#444444;
+  --color-primary:#4f98a3;
+  --color-primary-hover:#7ab8c0;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.5);
+}
 
- 	<!-- CSS
-   ================================================== -->
-   <link rel="stylesheet" href="css/base.css">  
-   <link rel="stylesheet" href="css/main.css">
-   <link rel="stylesheet" href="css/vendor.css">     
+/* LIGHT */
+:root:not([data-theme]),[data-theme="light"] {
+  --color-bg:#fafaf9;
+  --color-surface:#ffffff;
+  --color-surface-2:#f5f5f4;
+  --color-surface-offset:#efefed;
+  --color-border:rgba(0,0,0,0.08);
+  --color-divider:rgba(0,0,0,0.06);
+  --color-text:#1a1a1a;
+  --color-text-muted:#666666;
+  --color-text-faint:#b0b0b0;
+  --color-primary:#01696f;
+  --color-primary-hover:#0c4e54;
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.08);
+}
 
-   <!-- script
-   ================================================== -->   
-	<script src="js/modernizr.js"></script>
-	<script src="js/pace.min.js"></script>
-	
-	<!-- Google Analytics 4 - Measurement ID -->
-	<!-- Get your ID from: https://analytics.google.com/ -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XFL6PZPRQH"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'G-XFL6PZPRQH', {
-			'anonymize_ip': true, // GDPR-friendly
-			'allow_google_signals': false,
-			'allow_ad_personalization_signals': false
-		});
-	</script>
-	
-	<!-- Custom Analytics Tracking -->
-	<script src="js/analytics.js"></script>
+@media (prefers-color-scheme:light){
+  :root:not([data-theme]){
+    --color-bg:#fafaf9;--color-surface:#ffffff;--color-surface-2:#f5f5f4;
+    --color-surface-offset:#efefed;--color-border:rgba(0,0,0,0.08);
+    --color-divider:rgba(0,0,0,0.06);--color-text:#1a1a1a;
+    --color-text-muted:#666666;--color-text-faint:#b0b0b0;
+    --color-primary:#01696f;--color-primary-hover:#0c4e54;
+    --shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);
+  }
+}
 
-   <!-- favicons
-	================================================== -->
-	<link rel="icon" type="image/png" href="favicon.png">
-	
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;scroll-padding-top:5rem}
+body{min-height:100dvh;font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);line-height:1.65}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.2}
+p,li{text-wrap:pretty;max-width:68ch}
+a{color:var(--color-primary);text-decoration:none;transition:color var(--transition-interactive)}
+a:hover{color:var(--color-primary-hover)}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+ul[role="list"]{list-style:none}
+::selection{background:oklch(from var(--color-primary,#4f98a3) l c h / 0.2);color:var(--color-text)}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+a,button,[role="button"]{transition:color var(--transition-interactive),background var(--transition-interactive),border-color var(--transition-interactive),opacity var(--transition-interactive)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ─── LAYOUT ─── */
+.container{max-width:var(--content-default);margin-inline:auto;padding-inline:var(--space-6)}
+.container--wide{max-width:var(--content-wide)}
+section{padding-block:clamp(var(--space-16),8vw,var(--space-24))}
+.section-label{font-size:var(--text-xs);font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-faint);margin-bottom:var(--space-10)}
+.section-title{font-size:var(--text-xl);font-weight:600;color:var(--color-text);margin-bottom:var(--space-6)}
+hr.divider{border:none;border-top:1px solid var(--color-divider);margin:0}
+
+/* ─── NAV ─── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--color-bg);border-bottom:1px solid var(--color-border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:3.5rem;max-width:var(--content-default);margin-inline:auto;padding-inline:var(--space-6)}
+.nav-logo{display:flex;align-items:center;gap:var(--space-3);text-decoration:none;color:var(--color-text)}
+.nav-logo svg{flex-shrink:0}
+.nav-logo-text{font-size:var(--text-sm);font-weight:500;letter-spacing:-0.01em}
+.nav-links{display:flex;align-items:center;gap:var(--space-8)}
+.nav-links a{font-size:var(--text-sm);color:var(--color-text-muted);font-weight:400}
+.nav-links a:hover{color:var(--color-text)}
+.nav-right{display:flex;align-items:center;gap:var(--space-4)}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:var(--radius-md);color:var(--color-text-muted);border:1px solid var(--color-border)}
+.theme-toggle:hover{color:var(--color-text);background:var(--color-surface-2)}
+.nav-cta{font-size:var(--text-sm);font-weight:500;color:var(--color-text-muted);padding:var(--space-2) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-md)}
+.nav-cta:hover{color:var(--color-text);border-color:rgba(255,255,255,0.18);background:var(--color-surface)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;width:36px;height:36px;align-items:center;justify-content:center;border-radius:var(--radius-md);color:var(--color-text-muted)}
+.nav-hamburger span{display:block;width:20px;height:1.5px;background:currentColor;transition:transform var(--transition-interactive),opacity var(--transition-interactive)}
+.mobile-menu{display:none;position:fixed;top:3.5rem;left:0;right:0;background:var(--color-bg);border-bottom:1px solid var(--color-border);z-index:99;padding:var(--space-6)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:var(--space-3) 0;font-size:var(--text-base);color:var(--color-text-muted);border-bottom:1px solid var(--color-divider)}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:var(--color-text)}
+
+/* ─── HERO ─── */
+.hero{padding-top:calc(3.5rem + clamp(var(--space-16),8vw,var(--space-24)));padding-bottom:clamp(var(--space-16),8vw,var(--space-24))}
+.hero-status{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-8);padding:var(--space-2) var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-full);letter-spacing:0.03em}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2.5s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-size:var(--text-2xl);font-weight:600;letter-spacing:-0.03em;color:var(--color-text);line-height:1.1;margin-bottom:var(--space-6);max-width:820px}
+.hero-sub{font-size:var(--text-base);color:var(--color-text-muted);max-width:56ch;line-height:1.7;margin-bottom:var(--space-10)}
+.hero-actions{display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:500;color:var(--color-bg);background:var(--color-text);padding:var(--space-3) var(--space-5);border-radius:var(--radius-md)}
+.btn-primary:hover{color:var(--color-bg);opacity:0.85}
+.btn-ghost{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);font-weight:400;color:var(--color-text-muted);padding:var(--space-3) var(--space-5);border:1px solid var(--color-border);border-radius:var(--radius-md)}
+.btn-ghost:hover{color:var(--color-text);border-color:rgba(255,255,255,0.18)}
+.hero-meta{display:flex;align-items:center;gap:clamp(var(--space-6),4vw,var(--space-10));margin-top:var(--space-12);padding-top:var(--space-8);border-top:1px solid var(--color-divider);flex-wrap:nowrap;overflow-x:auto}
+.hero-meta-item{display:flex;flex-direction:column;gap:var(--space-1)}
+.meta-label{font-size:var(--text-xs);color:var(--color-text-faint);letter-spacing:0.06em;text-transform:uppercase}
+.meta-value{font-size:var(--text-sm);color:var(--color-text-muted);font-weight:400}
+
+/* ─── ABOUT ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(var(--space-12),5vw,var(--space-20));align-items:start}
+.about-text p{color:var(--color-text-muted);line-height:1.8;margin-bottom:var(--space-5)}
+.about-text p:last-child{margin-bottom:0}
+.about-domains{display:flex;flex-direction:column;gap:var(--space-4)}
+.domain-item{padding:var(--space-5) var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)}
+.domain-item h3{font-size:var(--text-sm);font-weight:600;color:var(--color-text);margin-bottom:var(--space-1)}
+.domain-item p{font-size:var(--text-xs);color:var(--color-text-muted);max-width:none;line-height:1.5}
+
+/* ─── FEATURED WORK ─── */
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4)}
+.work-card{padding:var(--space-8) var(--space-8);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);display:flex;flex-direction:column;gap:var(--space-5)}
+.work-card:hover{border-color:rgba(255,255,255,0.14);background:var(--color-surface-2)}
+.work-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-4)}
+.work-tag{font-size:var(--text-xs);color:var(--color-text-faint);font-weight:500;letter-spacing:0.06em;text-transform:uppercase}
+.work-status{font-size:var(--text-xs);padding:2px var(--space-2);border-radius:var(--radius-full);font-weight:500;white-space:nowrap;flex-shrink:0}
+.work-status.published{background:rgba(74,222,128,0.1);color:#4ade80}
+.work-status.revision{background:rgba(251,191,36,0.1);color:#fbbf24}
+.work-status.ongoing{background:rgba(79,152,163,0.12);color:var(--color-primary)}
+.work-card h3{font-size:var(--text-base);font-weight:600;color:var(--color-text);line-height:1.35;letter-spacing:-0.01em}
+.work-card p{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.8;flex:1;max-width:none;padding-block:var(--space-1)}
+.work-card-tags{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.tag{font-size:var(--text-xs);color:var(--color-text-faint);background:var(--color-surface-offset);padding:var(--space-1) var(--space-2);border-radius:var(--radius-sm);font-weight:400}
+
+/* ─── EXPERIENCE ─── */
+.exp-list{display:flex;flex-direction:column}
+.exp-item{display:grid;grid-template-columns:160px 1fr;gap:var(--space-8);padding:var(--space-8) 0;border-top:1px solid var(--color-divider)}
+.exp-item:last-child{border-bottom:1px solid var(--color-divider)}
+.exp-meta{padding-top:var(--space-1)}
+.exp-date{font-size:var(--text-xs);color:var(--color-text-faint);font-weight:400;line-height:1.5}
+.exp-org{font-size:var(--text-xs);color:var(--color-text-muted);margin-top:var(--space-2);font-weight:500}
+.exp-content{}
+.exp-role{font-size:var(--text-base);font-weight:600;color:var(--color-text);margin-bottom:var(--space-2)}
+.exp-badge{display:inline-flex;align-items:center;font-size:var(--text-xs);font-weight:500;padding:1px var(--space-2);border-radius:var(--radius-full);margin-bottom:var(--space-3);background:rgba(79,152,163,0.12);color:var(--color-primary)}
+.exp-desc{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.75;max-width:none}
+.exp-bullets{margin-top:var(--space-3);display:flex;flex-direction:column;gap:var(--space-2)}
+.exp-bullets li{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.6;display:flex;gap:var(--space-2)}
+.exp-bullets li::before{content:"—";color:var(--color-text-faint);flex-shrink:0}
+
+/* ─── PUBLICATIONS ─── */
+.pub-list{display:flex;flex-direction:column;gap:var(--space-6)}
+.pub-item{padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg)}
+.pub-meta{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3);flex-wrap:wrap}
+.pub-year{font-size:var(--text-xs);color:var(--color-text-faint);font-weight:500;padding:1px var(--space-2);background:var(--color-surface-offset);border-radius:var(--radius-sm)}
+.pub-venue{font-size:var(--text-xs);color:var(--color-text-muted);font-style:italic}
+.pub-status-badge{font-size:var(--text-xs);font-weight:500;padding:1px var(--space-2);border-radius:var(--radius-full)}
+.pub-status-badge.revision{background:rgba(251,191,36,0.1);color:#fbbf24}
+.pub-status-badge.preprint{background:rgba(79,152,163,0.1);color:var(--color-primary)}
+.pub-item h3{font-size:var(--text-sm);font-weight:600;color:var(--color-text);margin-bottom:var(--space-2);line-height:1.4}
+.pub-authors{font-size:var(--text-xs);color:var(--color-text-faint);margin-bottom:var(--space-4);line-height:1.6}
+.pub-link{font-size:var(--text-xs);color:var(--color-primary);font-weight:500;display:inline-flex;align-items:center;gap:4px}
+.pub-link:hover{color:var(--color-primary-hover)}
+
+/* ─── WRITING ─── */
+.writing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+.writing-card{padding:var(--space-6);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);display:flex;flex-direction:column;gap:var(--space-3);text-decoration:none}
+.writing-card:hover{border-color:rgba(255,255,255,0.14);background:var(--color-surface-2)}
+.writing-date{font-size:var(--text-xs);color:var(--color-text-faint)}
+.writing-card h3{font-size:var(--text-sm);font-weight:600;color:var(--color-text);line-height:1.4;flex:1}
+.writing-card p{font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.6;max-width:none}
+.writing-arrow{font-size:var(--text-xs);color:var(--color-primary);margin-top:auto;display:flex;align-items:center;gap:4px}
+
+/* ─── FOOTER ─── */
+footer{padding-block:var(--space-12);border-top:1px solid var(--color-divider)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4)}
+.footer-left{font-size:var(--text-xs);color:var(--color-text-faint)}
+.footer-links{display:flex;align-items:center;gap:var(--space-6)}
+.footer-links a{font-size:var(--text-xs);color:var(--color-text-faint)}
+.footer-links a:hover{color:var(--color-text-muted)}
+.footer-sep{color:var(--color-text-faint);font-size:var(--text-xs)}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+  .about-grid{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:1fr}
+  .writing-grid{grid-template-columns:1fr}
+  .exp-item{grid-template-columns:1fr;gap:var(--space-2)}
+  .exp-meta{display:flex;align-items:baseline;gap:var(--space-3)}
+  .hero h1{font-size:clamp(1.75rem,6vw,2.5rem)}
+  .hero-meta{gap:var(--space-5)}
+}
+@media(max-width:480px){
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
 </head>
+<body>
 
+<a href="#main" class="sr-only">Skip to content</a>
 
-<body id="top">
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Xenophon Giannoulis home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 8l8 8M16 8l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-logo-text">Xenophon Giannoulis</span>
+    </a>
+    <div class="nav-links" role="list">
+      <a href="#about" role="listitem">About</a>
+      <a href="#work" role="listitem">Work</a>
+      <a href="#experience" role="listitem">Experience</a>
+      <a href="#writing" role="listitem">Writing</a>
+    </div>
+    <div class="nav-right">
+      <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="https://xenofon.cloud" class="nav-cta" target="_blank" rel="noopener noreferrer">Consulting ↗</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
 
-	<!-- header 
-   ================================================== -->
-   <header class="s-header">
-        <nav class="header-nav-wrap">
-            <ul class="header-nav">
-                <li><a class="smoothscroll"  href="#home" title="home">Home</a></li>
-                <li><a class="smoothscroll"  href="#about" title="about">About</a></li>
-                <li><a class="smoothscroll"  href="#resume" title="resume">Resume</a></li>
-                <li><a class="smoothscroll"  href="#contributions" title="contributions">Contributions</a></li>
-            </ul>
-        </nav>
-
-    </header> <!-- end s-header -->
-	<!-- intro section
-   ================================================== -->
-   <section id="intro">   
-
-   	<div class="intro-overlay"></div>	
-
-   	<div class="intro-content">
-   		<div class="row">
-
-   			<div class="col-twelve">
-
-	   			<h1>Hi. I am Xenophon. </h1>
-
-	   			<!-- <p class="intro-position">
-	   				<span>Data Scientist</span>
-	   				<span>Statistician</span> 
-	   				<span>Bioinformatician</span>
-	   			</p>
-	   			--> 
-			</div> <!-- Make sure this closing div tag is here -->
-
-
-<div class="row button-section">
-   <a href="Xenophon_CV.pdf" title="Download Resume" class="button button-primary">Download CV</a>
-</div> 
-	
-		</div> <!-- /row -->
-	</div> <!-- /intro-content --> 
-
-   	<ul class="intro-social">        
-         <li><a href="https://github.com/xenophong" title="GitHub" target="_blank" rel="noopener noreferrer"><i class="fa fa-github"></i></a></li>
-         <li><a href="https://bsky.app/profile/xenophong.bsky.social" title="Bluesky" target="_blank" rel="noopener noreferrer"><i class="fa fa-twitter"></i></a></li>
-         <li><a href="https://www.linkedin.com/in/xenog/" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a></li>
-		 <li><a href="https://substack.com/@xenophong" title="Substack" target="_blank" rel="noopener noreferrer"><i class="fa fa-rss-square"></i></a></li>
-		 <li><a href="https://syntixi.de/" title="Syntixi" target="_blank" rel="noopener noreferrer"><i class="fa fa-volume-up"></i></a></li>
-		 <li><a href="mailto:xgiannoulis@proton.me?subject=Contact%20from%20Website" title="Email Me"><i class="fa fa-envelope"></i></a></li>
-	</ul> <!-- /intro-social -->      	
-
-   </section> <!-- /intro -->
-
-   <!-- about section
-   ================================================== -->
-   <section id="about">  
-
-   	<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5>About</h5>
-   			<h1>139 bytes about myself.</h1>
-
-   			<div class="intro-info">
-
-   				<img src="images/IMG_1114.jpeg" alt="Profile Picture of Xenophon Giannoulis" loading="lazy">
-
-   				<p class="lead">
-					I lead the design of genomic evidence systems that power drug discovery and clinical decisions with high-confidence human genetic insights.				</p>
-
-   			</div>   			
- 
-			   
-
-   		</div>   		
-   	</div> <!-- /section-intro -->
-
-   	<div class="row about-content">
-
-   		<div class="col-six tab-full">
-
-		<h2>Profile</h2>
-
-		<p>
-		I am a statistical geneticist and genomic platform lead operating at the intersection of genomics, AI, and translational medicine. At Pheiron, I lead the design of biobank-scale genomic evidence systems that translate human genetic data into actionable inputs for drug development and clinical decision-making.
-		</p>
-
-		<p>
-		My work combines statistical genetics, causal inference, and multi-omic integration, with an emphasis on building robust, production-grade platforms. I have led efforts spanning cross-genomic regulation—most notably tissue-specific mitochondrial–nuclear gene regulation—and large-scale graph-based integration of biomedical knowledge. I am drawn to problems where scientific rigor, system architecture, and translational impact are addressed within a unified integrated framework.
-		</p>
-
-		<p>
-		These systems are designed to support causal interpretation, target validation, biomarker development, and clinical prioritization at decision-making scale.
-		</p>
-			<h4>General Info</h4>
-   			<ul class="info-list">
-   				<li>
-   					<strong>Full Name:</strong>
-   					<span>Xenophon Giannoulis</span>
-   				</li>
-   				<li>
-   					<strong>Location:</strong>
-   					<span>Bavaria, Germany</span>
-   				</li>
-   				<li>
-   					<strong>Email:</strong>
-   					<span><a href="mailto:xgiannoulis@proton.me?subject=Contact%20from%20Website">xgiannoulis@proton.me</a></span>
-   				</li>
-   			</ul> <!-- /info-list -->
-   			<!-- <h4>Languages</h4> 
-				<ul class="info-list">
-   				<li>
-   					<strong>Greek:</strong>
-   					<span>Fluent</span>
-   				</li>
-   				<li>
-   					<strong>English:</strong>
-   					<span>Fluent</span>
-   				</li>
-   				<li>
-   					<strong>German:</strong>
-   					<span>Advanced</span>
-   				</li>
-			-->
-   			</ul> <!-- /info-list -->
-
-   		</div>
-
-   		<div class="col-six tab-full">
-		<h2>Technical Depth</h2>
-
-		<p>
-		I work fluently across <b>R</b> (Bioconductor, Shiny), <b>Python</b> (Polars, Limix), and <b>C/C++</b> (PLINK, REGENIE, LDAK, GCTA), and have led projects using <b>Neo4j</b>, <b>RDF/SPARQL</b>, and cloud‑ready analytics platforms.
-		</p>
-
-		<p>
-		On the platform side, I build queryable data catalogs on Apache Iceberg/Parquet with SQL/DuckDB analytic layers and REST interfaces for gene, variant, and phenotype‑level lookups, backed by production‑grade QC, validation, and monitoring. My experience spans DNAnexus, AWS/S3, Docker, and reproducible workflows for biobank‑scale analyses, together with methods expertise in GWAS, PheWAS, eQTL/ct‑eQTL mapping, PRS, rare‑variant burden tests, fine‑mapping, and causal follow‑up (colocalization, mediation, Mendelian randomization). 
-		</p>
-
-		<p>
-		Beyond tools, I focus on reproducibility, robustness, and aligning computational strategy with scientific and translational objectives.
-		</p>
-
-
-  <ul class="skill-bars">
-    <li>
-      <div class="progress percent95"><span>95%</span></div>
-      <strong>Statistical Genetics</strong>
-    </li>
-    <li>
-      <div class="progress percent95"><span>90%</span></div>
-      <strong>Data Integration & Pipelines</strong>
-    </li>
-    <li>
-      <div class="progress percent95"><span>90%</span></div>
-      <strong>Machine Learning</strong>
-    </li>
-    <li>
-      <div class="progress percent90"><span>90%</span></div>
-      <strong>Bioinformatics</strong>
-    </li>
-    <li>
-      <div class="progress percent90"><span>90%</span></div>
-      <strong>Knowledge Graphs & Neo4j</strong>
-    </li>
-  </ul>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+  <a href="#about">About</a>
+  <a href="#work">Work</a>
+  <a href="#experience">Experience</a>
+  <a href="#writing">Writing</a>
+  <a href="https://xenofon.cloud" target="_blank" rel="noopener noreferrer">Consulting ↗</a>
 </div>
 
-
-
-<div class="row button-section">
-   <div class="col-twelve">
-      <a href="Xenophon_CV.pdf" title="Download CV" class="button button-primary">Download CV</a>
-   </div>   		
-</div>
-
-
-   </section> <!-- /process-->    
-
-
-   <!-- resume Section
-   ================================================== -->
-	<section id="resume" class="grey-section">
-
-		<div class="row section-intro">
-   		<div class="col-twelve">
-
-   			<h5>Resume</h5>
-   			<h1>My professional and educational background.</h1>
-
-   		</div>   		
-   	</div> <!-- /section-intro--> 
-
-   	   
-   	<div class="row resume-timeline">
-
-   		<div class="col-twelve resume-header">
-
-   			<h2>Work Experience</h2>
-
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-				
-				<div class="timeline-block">
-
-					<div class="timeline-ico">
-						<i class="fa fa-briefcase"></i>
-					</div>
-
-					<div class="timeline-header">
-						<h3>Statistical Geneticist </h3>
-						<p>July 2025 - now</p>
-
-					</div>
-
-					<div class="timeline-content">
-					<h4><a href="https://www.pheiron.com" target="_blank">Pheiron</a></h4>
-					<p>
-						At Pheiron, I lead the design of genomic evidence systems that support clinical translation and drug discovery, from data ingestion to decision‑facing outputs. My work spans integrating large biobank and disease cohorts (including UK Biobank, FinnGen, and GTEx), building scalable GWAS/eQTL and burden‑testing pipelines, and shaping platform architecture that combines AI and statistical genetics to produce causal, decision‑grade readouts from population‑scale multi‑omic data.
-					</p>
-					</div>
-				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-					<div class="timeline-ico">
-						<i class="fa fa-briefcase"></i>
-					</div>
-
-					<div class="timeline-header">
-						<h3>Postdoctoral Researcher </h3>
-						<p>January 2025 - June 2025</p>
-
-					</div>
-
-					<div class="timeline-content">
-						<h4> <a href="https://www.helmholtz-munich.de/helmholtz-pioneer-campus" target="_blank" > Helmholtz Institute of Computational Biology </a></h4>
-						<p> 
-						Joined the Computational Neurobiology Group at Helmholtz Computational Health Center to modernize the Alzheimer’s Disease Atlas by integrating large‑scale omics data into a Neo4j‑backed knowledge graph. I designed unified scoring schemes and harmonization workflows for multi‑omic and phenotypic data, enabling network‑ and AI‑driven prioritization of therapeutic targets and candidate drugs.
-						</p>
-					</div>
-
-   				<div class="timeline-block">
-					<div class="timeline-ico">
-						<i class="fa fa-briefcase"></i>
-					</div>
-					
-					<div class="timeline-header">
-						<h3>Scientific Researcher</h3>
-						<p>June 2020 - December 2024</p>
-						</div>
-
-						<div class="timeline-content">
-						<h4>
-							<a href="https://www.helmholtz-munich.de/helmholtz-pioneer-campus" target="_blank">
-							Helmholtz Pioneer Campus
-							</a>
-						</h4>
-						<p>
-							Funded through the highly competitive Munich School of Data Science
-							<a href="https://www.mu-ds.de/" target="_blank">(MUDS)</a>, I worked as a scientific researcher at the
-							<a href="https://www.pioneercampus.org/themenmenue-links/about-us0/principal-investigators/na-cai/index.html" target="_blank">
-							Institute of Translational Genetics
-							</a>, where I led work on mitochondrial–nuclear regulation across 40+ human tissues, building multi‑tissue atlases of gene expression and mito‑nuclear control.
-							This work produced first‑author and co‑first‑author manuscripts on mito‑nuclear gene expression regulation and tissue‑specific mtDNA heteroplasmy (both under revision at Nature Communications), and involved designing large‑scale WGS/RNA‑seq pipelines, causal inference workflows, and cross‑disciplinary collaborations, alongside co‑organizing two MUDS retreats and their scientific programs.
-						</p>
-						</div>
-
-					
-				</div> <!-- /timeline-block -->
-
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-					   <div class="timeline-header">
-						<h3>Research Fellow</h3>
-						<p style="white-space: nowrap;">August 2024 - September 2024</p>
-
-						<!-- Add subtitle for university and department -->
-					</div>
-
-	   				<div class="timeline-content">
-	   					<h4><a href="https://www.lmu.de/en/" target="_blank">Maximilian University of Munich</a></h4>
-						   						   
-							I was awarded a fellowship from the Data Science for Social Good Foundation<a href="https://www.datascienceforsocialgood.org/" target="_blank"> (DSSG)</a>, during which I collaborated with Munich's Machine Learning Center <a href="https://mcml.ai/" target="_blank"> (MCML)</a>, the statistical department of <a href="https://www.en.statistik.uni-muenchen.de/index.html" target="_blank">LMU</a>, and Bavaria's state Ministry of the Interior <a href="https://www.bmi.bund.de/EN/topics/civil-protection/civil-protection-node.html" target="_blank">(BMI)</a>.
-							Our collaboration aimed to develop a web application for identifying optimal water extraction points for firefighting purposes. The project involved integrating statistical mapping, machine learning techniques, and interactive maps. 
-							Additionally, we implemented routing algorithms, containerized the application using Docker, deployed it on AWS, and presented our findings to Germany's federal parliament.
-						</p>
-					</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Instructor, Human Genetics of Complex Traits</h3>
-	   					<p>October 2022 - March 2023</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-						<h4>Technical University of Munich</h4>	
-						<p>
-						I developed and configured educational material for TUM's Medicine department's Human Genetics of Complex Traits course <a href="https://campus.tum.de/tumonline/ee/ui/ca2/app/desktop/#/slc.tm.cp/student/courses/950609499?$ctx=lang=de&$scrollTo=toc_overview" target="_blank">(ME 1660-P).</a>
-						In addition, as part of our team, I served as a tutor in lectures and workshops, where we covered a diverse range of topics including UNIX, quality control, association testing, meta-analysis, and polygenic risk scores.
-						These roles, helped me facilitate a comprehensive learning experience for students, which later inspired me to pursue a professional certificate in Teaching in Higher Education from <a href="https://www.prolehre.tum.de/en/prolehre/programs-services/courses-certification/" target="_blank">TUM ProLehre Media & Didactics</a>.
-						</p>
-							
-					</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-briefcase"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Genomic Data Science Intern</h3>
-	   					<p>October 2019 - April 2020</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Helmholtz Munich</h4>
-	   					<p>Implemented my master thesis at the Institute of Translational Genomics <a href="https://www.helmholtz-munich.de/en/itg" target="_blank">(ITG)</a>, where I developed a quality control pipeline to analyze pre-processed data. The pipeline ensured accuracy during merging, corrected for population structure, imputed missing data, and identified biases.
-						Focused on improving the quality of genome-wide association studies (GWAS) data, I processed peripheral whole blood samples collected from 250 patients across four cohorts undergoing total joint replacement surgery. The project involved merging cohorts from different array versions, necessitating specialized handling of genetic data assumptions.
-						</p>
-	   				</div>
-	   		
-	   		
-	   			</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->   			
-
-   		</div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /resume-timeline -->
-   	
-<div class="row resume-timeline">
-
-   		<div class="col-twelve resume-header">
-
-   			<h2>Education</h2>
-
-   		</div> <!-- /resume-header -->
-
-   		<div class="col-twelve">
-
-   			<div class="timeline-wrap">
-
-   				<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Dr. rer. nat.</h3>
-	   					<p>June 2020 - December 2024</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Technical University of Munich, DE</h4>
-	   					<p>During my doctoral program in experimental medicine and health sciences, I developed a computational pipeline to analyze mtDNA-nucDNA interactions across 48 tissues, identifying discrepancies related to psychiatric conditions. Leveraging machine learning approaches, we revealed regulatory relationships between mitochondria and the nucleus, pinpointing causal genomic variations, particularly in the central nervous system tissues. This research sheds light on tissue-specific mito-nuclear interactions, crucial for understanding health and disease.</p>	   			
-					</div> <!-- /timeline-block -->
-					</div>
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-university"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>M.Sc.</h3>
-	   					<p>October 2018 - April 2020</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Thessaly University, GR </h4>
-	   					<p>Joined the department of computer science and biomedical informatics, where I took focused courses on applied machine learning, ontology engineering, biosensors and digital imaging. My master's thesis centered around identifying biased individuals and SNPs, statistical imputation and concatenating cohorts from different Illumina genotyping arrays.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-university"></i>
-	   				</div>
-
-					<div class="timeline-header">
-						<h3 style="white-space: nowrap;">B.Sc. (Hons)</h3>
-						<p>October 2012 - April 2018</p>
-					</div>
-					
-
-	   				<div class="timeline-content">
-	   					<h4>Piraeus University, GR </h4>
-	   					<p>During my 4-year degree in statistics and actuarial mathematics, I gained a solid educational background in probability theory, linear algebra, bayesian statistics, biostatistics, risk management and stochastic processes. 
-							In my bachelor thesis, I explored the application of fitting probability distributions to empirical data, where I analyzed various techniques to optimize model selection and enhance the accuracy of predictive systems.<p>								
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-   			</div> <!-- /timeline-wrap -->   			
-
-   		</div> <!-- /col-twelve -->
-   		
-   	</div> <!-- /resume-timeline -->
-
-		
-	</section> <!-- /features -->
-	
-	<!-- services Section
-   ================================================== -->
-	<section id="contributions" class="s-blog target-section">
-	
-	<div class="row section-intro">
-		<h5>Contributions</h5>
-		<h1>A list of my academic contributions.</h1>
-   	</div>
-   	<div class="row blog-content">
-   	<div class="col-six tab-full">
-		
-
-		<div class="blog-list block-1-2 block-tab-full">
-			<article class="col-block">       
-				<div class="blog-date">
-					<a href="https://www.biorxiv.org/content/10.1101/2024.12.10.627680v1">Manuscript submitted on bioRxiv, 2024</a>
-				</div>  
-				<h4 class="h02"><a href="https://www.biorxiv.org/content/10.1101/2024.12.10.627680v1">Interplay between mitochondrial and nuclear DNA in gene expression regulation.</a></h4>
-				</p>By using linear mixed models (LMMs) to conduct expression quantitative trait locus (eQTL) mapping, we explored the crosstalk between mitochondria and the cell nucleus across 48 different tissues. Through the integration of our identified eQTLs with various molecular data, we applied a series of analyses, including statistical colocalization, causal inference, graph neural networks, and over-representation analysis. These methods helped us identify disease genes, variants, and ontological pathways. Our study shows potential for unveiling new therapeutic approaches aimed at a wide range of diseases, from metabolic disorders to neurodegenerative conditions.</p>
-		
-				<div class="blog-cat">
-					<p>Mito-Nuclear Interactions, Mediation, colocalization, Mendelian Randomization, Graph Neural Networks, Interpretable Machine Learning</p>
-				</div>
-			</article>
-		</div>
-		
-
-
-		<div class="row blog-content">
-				<div class="blog-list block-1-2 block-tab-full">
-					<article class="col-block">       
-						<div class="blog-date">
-							<a href="https://meetings.cshl.edu/abstracts.aspx?meet=GENOME&year=24">Scientific Poster, Biology of Genomes (CSHL), Cold Spring Harbor Laboratory, May 2024</a>
-						</div>  
-						<h4 class="h02"><a href="">Tissue Specific Regulation of Mitochondria Encoding Genes.</a></h4>
-						</p> During the conference, I showcased my poster on the interaction between mitochondrial and nuclear communication in regulating tissue-specific gene expression. In addition to receiving excellent feedback, I had the privilege of meeting numerous outstanding scientists and fostering valuable discussions.<p>				
-						<div class="blog-cat">
-							<p>Mito-Nuclear Interactions, Causal Inference, Graph Neural Networks</p>
-						</div>
-					</article>
-			</div>
-
-            <div class="blog-list block-1-2 block-tab-full">
-                <article class="col-block">       
-                    <div class="blog-date">
-                        <a href="https://adsaannualmeeting2023.sched.com/event/1QUhu/">Scientific Poster, American Dairy Science Association (ADSA), University of Texas, USA 2023</a>
-                    </div>  
-                    <h4 class="h02"><a href="https://github.com/DSSGxMunich/hydroxplorer-web-app">HydroXplorer: A Fire Hydrant Range Finder Application.</a></h4>
-                    <p>This project aims to develop a web application to help firefighters determine the areas covered with existing and planned hydrants. The application identifies accessible zones utilizing hydrant location or natural water sources, pinpoints nearby water sources for firefighting purposes, and calculates elevation disparities between the fire location and surrounding water sources.</p>
-                    <div class="blog-cat">
-                        <p>Data Science for Social Good, DSSGxMunich, MCML, Machine Learning, BERD, BYTE, Bavarian Ministry for Digital Affairs </p>
-                    </div>
-                </article>
-            </div>
-
-			<div class="blog-list block-1-2 block-tab-full">
-                <article class="col-block">       
-                    <div class="blog-date">
-
-                        <a href="https://github.com/hmgu-itg/HumanMolecularGenetics_TUM">Lecture Notes 2022</a>
-                    </div>  
-                    <h4 class="h02"><a href="https://github.com/hmgu-itg/HumanMolecularGenetics_TUM">Human Genetics of Complex Traits.</a></h4>
-					<p>I have been involved in the curation of a workshop at TUM that covers key subjects in human genetics and genomics. The course included various topics such as tools for genome-wide association studies (GWAS), UNIX command line, association testing, meta-analysis methods, rare genetic variations, molecular QTL mapping, bioinformatics databases, and polygenic scores. Moreover, I led the creation of interactive Jupyter lab exercises during the workshop's hands-on sessions, allowing participants to apply their knowledge of the course content to real-world data.</p>
-
-                    <div class="blog-cat">
-                        <p>GWAS, UNIX, Complex Traits, Meta-analysis, Bioinformatics, TUM, VSS, JupyterLab</p>
-                    </div>
-                </article>
-            </div>
+<main id="main">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-status">
+      <span class="status-dot" aria-hidden="true"></span>
+      Joining GHGA · DKFZ Heidelberg · July 2026
+    </div>
+    <h1>Translational genomics<br>and genomic data infrastructure.</h1>
+    <p class="hero-sub">
+      I build systems that turn population-scale biological data into reproducible, decision-grade evidence —
+      for target discovery, disease understanding, and federated genomic research.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">View work</a>
+      <a href="XenophonCV.pdf" class="btn-ghost" download>Download CV</a>
+      <a href="https://xenofon.cloud" class="btn-ghost" target="_blank" rel="noopener noreferrer">Consulting ↗</a>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="meta-label">Based in</span>
+        <span class="meta-value">Germany</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Affiliation</span>
+        <span class="meta-value">GHGA · DKFZ</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Background</span>
+        <span class="meta-value">Statistical Genetics</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="meta-label">Standards</span>
+        <span class="meta-value">GA4GH · ELIXIR · Federated Data</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about" class="reveal">
+  <div class="container">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          My work sits at the intersection of statistical genetics, data infrastructure, and biomedical AI.
+          After a PhD and postdoctoral research at <strong>Helmholtz Munich</strong> and <strong>TUM</strong>,
+          focused on mitonuclear regulation and Alzheimer's disease multi-omics, I moved into industry to
+          build the genomic evidence systems that drug discovery teams actually need.
+        </p>
+        <p>
+          At Pheiron I led the architecture of biobank-scale GWAS and eQTL integration pipelines —
+          harmonizing FinnGen, UK Biobank, and MVP across 36M+ target-indication pairs.
+          I am now joining <strong>GHGA at DKFZ Heidelberg</strong> to work on federated genomic data
+          infrastructure, access governance, and interoperability standards for the German Human Genome-Phenome Archive.
+        </p>
+        <p>
+          I write about the limits of statistical inference in biology, genomic data governance, and
+          what it means to build infrastructure for science rather than just for publication.
+        </p>
+      </div>
+      <div class="about-domains">
+        <div class="domain-item">
+          <h3>Statistical Genetics</h3>
+          <p>GWAS, eQTL, iQTL mapping at biobank scale. Causal inference via Mendelian Randomization and Bayesian colocalization.</p>
         </div>
+        <div class="domain-item">
+          <h3>Data Infrastructure</h3>
+          <p>Federated compute, out-of-core ETL with DuckDB & Polars, GA4GH-compliant data access and governance.</p>
+        </div>
+        <div class="domain-item">
+          <h3>Multi-Omics Integration</h3>
+          <p>WGS, RNA-seq, graph-based disease network construction. AD Atlas, mitonuclear atlas.</p>
+        </div>
+        <div class="domain-item">
+          <h3>Biomedical AI</h3>
+          <p>Graph neural networks for target prioritization, interpretable ML for mechanistic insight.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURED WORK -->
+<section id="work" class="reveal">
+  <div class="container">
+    <p class="section-label">Featured Work</p>
+    <div class="work-grid">
+
+      <div class="work-card">
+        <div class="work-card-top">
+          <span class="work-tag">Bioinformatics · ML</span>
+          <span class="work-status published">Published</span>
+        </div>
+        <h3>Causal Inference for Drug Discovery</h3>
+        <p>Automated Mendelian Randomization and Colocalization pipelines to validate mechanism chains and predict clinical trial success. Processed high-dimensional omics data to extract molecular signatures for target prioritization — moving teams from raw genetic signals to decision-grade causal evidence.</p>
+        <div class="work-card-tags">
+          <span class="tag">Mendelian Randomization</span>
+          <span class="tag">Colocalization</span>
+          <span class="tag">R</span>
+          <span class="tag">Python</span>
+          <span class="tag">Drug Discovery</span>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-top">
+          <span class="work-tag">PhD Research</span>
+          <span class="work-status revision">Under revision · Nat. Comm.</span>
+        </div>
+        <h3>Multi-Tissue Mitonuclear Regulation Atlas</h3>
+        <p>Built the largest mitonuclear atlas to date — integrating WGS and RNA-seq from 684 donors across 48 tissues (GTEx v8). Identified genome-wide trans-mitonuclear regulatory links including CNS-enriched cell-type interaction effects, validated via Bayesian colocalization and mediation testing.</p>
+        <div class="work-card-tags">
+          <span class="tag">LMM eQTL</span>
+          <span class="tag">GTEx v8</span>
+          <span class="tag">mtDNA Haplogroups</span>
+          <span class="tag">Graph Neural Networks</span>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-top">
+          <span class="work-tag">Data Architecture</span>
+          <span class="work-status published">Published</span>
+        </div>
+        <h3>Scalable Multi-Biobank GWAS ETL Pipeline</h3>
+        <p>Architected a unified GWAS catalog harmonizing FinnGen, PAN-UKB, and MVP. An out-of-core ETL pipeline powered by DuckDB and Polars enabled processing of 36M+ target-indication pairs, with a precomputation framework for association lookups and automated QC for decision-grade data quality.</p>
+        <div class="work-card-tags">
+          <span class="tag">DuckDB</span>
+          <span class="tag">Polars</span>
+          <span class="tag">FinnGen</span>
+          <span class="tag">UK Biobank</span>
+          <span class="tag">MVP</span>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-card-top">
+          <span class="work-tag">Postdoc · Multi-Omics</span>
+          <span class="work-status ongoing">Ongoing</span>
+        </div>
+        <h3>Alzheimer's Disease Multi-Omics Network</h3>
+        <p>Expanded the AD Atlas platform by integrating heterogeneous biomedical and clinical datasets into interpretable knowledge graph representations. Built Neo4j-backed disease networks supporting mechanism exploration and therapeutic hypothesis generation for neurodegeneration research.</p>
+        <div class="work-card-tags">
+          <span class="tag">Neo4j</span>
+          <span class="tag">R Shiny</span>
+          <span class="tag">Knowledge Graph</span>
+          <span class="tag">Quantitative Genetics</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience" class="reveal">
+  <div class="container">
+    <p class="section-label">Experience</p>
+
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Jul 2026 →</div>
+          <div class="exp-org">DKFZ · Heidelberg</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-badge">Upcoming</div>
+          <div class="exp-role">Scientific Data Infrastructure Coordinator — GHGA</div>
+          <div class="exp-desc">Joining the German Human Genome-Phenome Archive to work on federated genomic data infrastructure, GA4GH-compliant access governance, and interoperability standards across institutional partners.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Jul 2025 — Jun 2026</div>
+          <div class="exp-org">Pheiron</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Statistical Geneticist (Platform Lead)</div>
+          <ul class="exp-bullets" role="list">
+            <li>Architected genomic evidence systems for translational drug discovery and target prioritization at biobank scale</li>
+            <li>Harmonized FinnGen, UK Biobank, and MVP datasets; built scalable workflows for PRS and rare variant association testing</li>
+            <li>Applied MR and statistical colocalization for target-indication prioritization and mechanism validation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Jan — Jun 2025</div>
+          <div class="exp-org">Helmholtz Munich</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Postdoctoral Researcher — Computational Neurobiology</div>
+          <ul class="exp-bullets" role="list">
+            <li>Expanded the AD Atlas platform with graph-based multi-omics integration for Alzheimer's disease target prioritization</li>
+            <li>Integrated heterogeneous biomedical datasets into interpretable network representations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Jun 2020 — Dec 2024</div>
+          <div class="exp-org">Helmholtz Pioneer Campus · TUM</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Scientific Researcher (PhD Candidate)</div>
+          <ul class="exp-bullets" role="list">
+            <li>Built the largest mitonuclear eQTL atlas to date across 48 tissues and 684 donors (GTEx v8)</li>
+            <li>Developed scalable LMM eQTL workflows, mtDNA haplogroup inference, and tissue-specific covariate control</li>
+            <li>Applied Bayesian colocalization, mediation testing, and MR to establish causal regulatory chains</li>
+            <li>Contributed to international consortia and interdisciplinary collaborative research initiatives</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Oct 2022 — Mar 2023</div>
+          <div class="exp-org">TU Munich</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Instructor — Human Genetics of Complex Traits</div>
+          <div class="exp-desc">Designed and delivered applied computational genomics curriculum covering GWAS, meta-analysis, and polygenic risk scoring. Focused on reproducible bioinformatics practice and translating theoretical genetics into hands-on workflows.</div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Nov 2019 — May 2020</div>
+          <div class="exp-org">Helmholtz Munich</div>
+        </div>
+        <div class="exp-content">
+          <div class="exp-role">Genomic Data Science Intern</div>
+          <div class="exp-desc">Built GWAS quality control and genotype harmonization workflows for large-scale multi-center cohort studies. Focused on genotype imputation, variant-level QC, and preprocessing for downstream integration.</div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="col-six tab-full">
-			<div class="row blog-content">
-
-
-				<div class="blog-list block-1-2 block-tab-full">
-					<article class="col-block">       
-						<div class="blog-date">
-							<a href="https://www.biorxiv.org/content/10.1101/2024.12.11.627989v11">Manuscript submitted on bioRxiv, 2024</a>
-						</div>  
-						<h4 class="h02"><a href="https://www.biorxiv.org/content/10.1101/2024.12.11.627989v1">Tissue-specific apparent mtDNA heteroplasmy and its relationship with ageing and mtDNA gene expression.</a></h4>
-						</p> In this study, we comprehensively characterize the landscape of common mtDNA heteroplasmy and mtRNA modifications across 49 human tissues assayed with bulk RNAseq in GTEx v8. As mtDNA heteroplasmy and mtRNA modifications are tissue-specific, we aim to establish a robust framework for identifying and testing both types of variations from tissue-specific RNAseq data. our study provides the first comprehensive and tissue-specific description of the apparent mtDNA heteroplasmy, their relationship with donor age, and their regulatory effects on mitochondrial gene expression. </p>
-						<div class="blog-cat">
-							<p>Mito-Nuclear Interactions, Interpretable Machine Learning, Gene Expression Regulation, Heteroplasmy</p>
-						</div>
-					</article>
-				</div>
-
-
-			<div class="blog-list block-1-2 block-tab-full">
-					<article class="col-block">       
-						<div class="blog-date">
-							<a href="https://2024.eshg.org/">Scientific Poster, European Human Genetics Conference (ESHG), Berlin, June 2024</a>
-						</div>  
-						<h4 class="h02"><a href="">Tissue Specific Regulation of Mitochondria Encoding Genes.</a></h4>
-						</p> During the conference, I showcased my poster on the interaction between mitochondrial and nuclear communication in regulating tissue-specific gene expression.<p>				
-						<div class="blog-cat">
-							<p>Mito-Nuclear Interactions, Causal Inference, Graph Neural Networks</p>
-						</div>
-					</article>
-			</div>
-
-			<div class="blog-list block-1-2 block-tab-full">
-                <article class="col-block">       
-                    <div class="blog-date">
-                        <a href="http://recomb2023.bilkent.edu.tr/posters.html">Scientific Poster, Computational Molecular Biology (RECOMB) 2023</a>
-                    </div>  
-                    <h4 class="h02"><a href=""> Tissue-specific apparent mtDNA heteroplasmy and its relationship with ageing and mtDNA gene expression.</a></h4>
-                    <p>We presented research findings related to mitochondrial DNA (mtDNA) heteroplasmy and its association with ageing and gene expression patterns, shedding light on the potential functional consequences of mtDNA variation within different tissues.</p>
-                    <div class="blog-cat">
-                        <p>mitochondria, Heteroplasmy, Aging, Molecular Genetics, Gene Regulation, Bioinformatics</p>
-                    </div>
-                </article>
-            </div>
-
-			
-            <div class="blog-list block-1-2 block-tab-full">
-                <article class="col-block">       
-                    <div class="blog-date">
-                        <a href=""> Scientific Poster, International Genetic Epidemiology Society (IGES) 2021</a>
-                    </div>  
-                    <h4 class="h02"><a href="">Tissue-Specific Expression Patterns of Mitochondrial DNA Genes.</a></h4>
-                    <p>Presented up to date research, received valuable feedback, and had meaningful discussions on genetic epidemiology implications.</p>
-                    <div class="blog-cat">
-                        <p>IGES, Epidemiology, mtDNA, Gene Regulation</p>
-                    </div>
-                </article>
-            </div>
-			<div class="blog-list block-1-2 block-tab-full">
-				<article class="col-block">       
-					<div class="blog-date">
-						<a href="masterthesis.pdf">Master Thesis, Thessaly University 2020</a>
-					</div>  
-					<h4 class="h02"><a href="">Quality Control and Imputation of Genotype data from different Illumina arrays</a></h4>
-					<p>This thesis explores the crucial importance of quality control (QC) procedures in genome-wide association studies (GWAS), which are vital for ensuring the trustworthiness of genetic associations. It focuses on integrating cohorts from different array versions, tackling the computational hurdles and genetic assumptions present in Illumina genotyping data. By employing thorough QC filtering and imputation methods, the thesis introduces a strong framework for detecting outlier individuals and SNPs, ultimately generating a top-notch dataset suitable for precise association testing.</p>
-					<div class="blog-cat">
-						<p>QC, GWAS, Osteoarthritis, Imputation, Genomic Variation, Bioinformatics, Statistical Genetics, PCA</p>
-					</div>
-				</article>
-			</div>
-			<div class="blog-list block-1-2 block-tab-full">
-				<article class="col-block">       
-					<div class="blog-date">
-						<a href="https://project.starsgame.eu/the-project/">ERASMUS+ project ”STARS GAME” 2021</a>
-					</div>  
-					<h4 class="h02"><a href="">Science Game Design</a></h4>
-					<p>STARS GAME is a project that is transforming the way science education is approached for 10-13-year-olds. As part of the game's design team, we secured and executed an EU commission-funded initiative. Through design thinking, we developed an educational escape room, integrating science into school curricula across 30 institutions in four European countries. Our main objective was to connect theoretical knowledge with practical application, utilizing game-based learning to nurture curiosity and improve critical thinking abilities.</p>
-					<div class="blog-cat">
-						<p>Science education, Design Thinking, Digital Escape Room, Game-based learning, Erasmus, EU </p>
-					</div>
-				</article>
-			</div>
-            </div>
+    <!-- Education -->
+    <div style="margin-top:var(--space-12)">
+      <p class="section-label" style="margin-bottom:var(--space-6)">Education</p>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">2020 — 2024</div>
+            <div class="exp-org">TU Munich</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">Dr. rer. nat. — Experimental Medicine</div>
+            <div class="exp-desc">Dissertation: Mitonuclear eQTL atlas and genetic regulation across human tissues.</div>
+          </div>
         </div>
-	</section> <!-- /section contributions -->
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">2018 — 2020</div>
+            <div class="exp-org">University of Thessaly</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">MSc — Computer Science & Biomedical Informatics (Bioinformatics)</div>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-date">2012 — 2018</div>
+            <div class="exp-org">University of Piraeus</div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">BSc — Statistics and Insurance Science</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-   <!-- footer
-   ================================================== -->
+  </div>
+</section>
 
-   <footer>
-     	<div class="row">
+<hr class="divider">
 
-      	<div class="col-six tab-full">
-	      	<div class="copyright">
-		        	<span>© Copyright 2025 Xenophon Giannoulis.</span> 
-		        	<span>Design by <a href="http://www.styleshout.com/">styleshout</a></span>	         	
-		         </div>		                  
-	      	</div>
+<!-- WRITING -->
+<section id="writing" class="reveal">
+  <div class="container">
+    <p class="section-label">Writing</p>
 
-	      	<div id="go-top">
-		         <a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
-		      </div>
+    <div class="writing-grid">
 
-      	</div> <!-- /row -->     	
-   </footer>  
+      <a href="https://substack.com/@xenophon" class="writing-card" target="_blank" rel="noopener noreferrer">
+        <span class="writing-date">Essay · 2024</span>
+        <h3>The Reproducibility Gap in Statistical Genetics</h3>
+        <p>On why most GWAS findings don't replicate — and what we can do about the infrastructure that enables this.</p>
+        <span class="writing-arrow">Read on Substack ↗</span>
+      </a>
 
-   <div id="preloader"> 
-    	<div id="loader"></div>
-   </div> 
+      <a href="https://substack.com/@xenophon" class="writing-card" target="_blank" rel="noopener noreferrer">
+        <span class="writing-date">Essay · 2024</span>
+        <h3>What Federated Data Actually Means for Genomics</h3>
+        <p>A practical look at GA4GH standards, data access governance, and the gap between federated ideals and federated reality.</p>
+        <span class="writing-arrow">Read on Substack ↗</span>
+      </a>
 
-   <!-- Java Script
-   ================================================== --> 
-   <script src="js/jquery-2.1.3.min.js"></script>
-   <script src="js/plugins.js"></script>
-   <script src="js/main.js"></script>
+      <a href="https://www.linkedin.com/in/xenog" class="writing-card" target="_blank" rel="noopener noreferrer">
+        <span class="writing-date">LinkedIn</span>
+        <h3>Notes on Statistical Inference, Data Infrastructure & Biomedical AI</h3>
+        <p>Regular posts on the limits of computational biology, genomic data systems, and building for science at scale.</p>
+        <span class="writing-arrow">Follow on LinkedIn ↗</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-left">Xenophon Giannoulis PhD · Heidelberg, Germany</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/xenog" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="footer-sep">·</span>
+        <a href="https://substack.com/@xenophon" target="_blank" rel="noopener noreferrer">Substack</a>
+        <span class="footer-sep">·</span>
+        <a href="https://xenofon.cloud" target="_blank" rel="noopener noreferrer">Consulting ↗</a>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/xenophong" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Theme toggle
+(function(){
+  const toggle = document.querySelector('[data-theme-toggle]');
+  const root = document.documentElement;
+  const sys = matchMedia('(prefers-color-scheme: dark)');
+  let theme = sys.matches ? 'dark' : 'light';
+  root.setAttribute('data-theme', theme);
+  function updateIcon(){
+    if(!toggle) return;
+    toggle.innerHTML = theme === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+  }
+  updateIcon();
+  toggle && toggle.addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    updateIcon();
+  });
+})();
+
+// Mobile menu
+(function(){
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  if(!btn || !menu) return;
+  let open = false;
+  btn.addEventListener('click', () => {
+    open = !open;
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      open = false;
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+    });
+  });
+})();
+
+// Scroll reveal
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+
+// Lucide icons
+document.addEventListener('DOMContentLoaded', () => { if(window.lucide) lucide.createIcons(); });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Xenophon Giannoulis",
+  "jobTitle": "Scientific Data Infrastructure Coordinator",
+  "affiliation": [{"@type":"Organization","name":"GHGA"},{"@type":"Organization","name":"DKFZ"}],
+  "url": "https://xenophong.github.io/web/",
+  "sameAs": [
+    "https://www.linkedin.com/in/xenog",
+    "https://github.com/xenophong",
+    "https://xenofon.cloud"
+  ],
+  "knowsAbout": ["Statistical Genetics","GWAS","eQTL","Mendelian Randomization","Federated Data","GA4GH","Bioinformatics","Biomedical AI"]
+}
+</script>
 
 </body>
-
 </html>
