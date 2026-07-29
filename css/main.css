@@ -2967,3 +2967,98 @@ html {
 section + section {
     border-top: 1px solid transparent;
 }
+
+.theme-toggle-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: 72px;
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+    .header-nav-wrap .header-nav li .theme-toggle-btn {
+        padding: 18px 0;
+        line-height: 18px;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+body.theme-dark {
+    background: #0b0b0c;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+body.theme-dark a,
+body.theme-dark a:visited {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+body.theme-dark a:hover,
+body.theme-dark a:focus,
+body.theme-dark a:active {
+    color: #FF0077;
+}
+
+body.theme-dark #about,
+body.theme-dark .s-blog {
+    background-color: #0b0b0c;
+}
+
+body.theme-dark .grey-section {
+    background: #101012;
+}
+
+body.theme-dark .grey-section p.lead {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+body.theme-dark #about h1,
+body.theme-dark #about h2,
+body.theme-dark #about h3,
+body.theme-dark #about h4,
+body.theme-dark #about h5,
+body.theme-dark #about h6,
+body.theme-dark #resume h1,
+body.theme-dark #resume h2,
+body.theme-dark #resume h3,
+body.theme-dark #resume h4,
+body.theme-dark #resume h5,
+body.theme-dark #resume h6,
+body.theme-dark .s-blog h1,
+body.theme-dark .s-blog h2,
+body.theme-dark .s-blog h3,
+body.theme-dark .s-blog h4,
+body.theme-dark .s-blog h5,
+body.theme-dark .s-blog h6 {
+    color: #F3F3F4;
+}
+
+body.theme-dark #about p,
+body.theme-dark #about .info-list li span,
+body.theme-dark #resume .timeline-header p,
+body.theme-dark #resume .timeline-content p,
+body.theme-dark .s-blog p,
+body.theme-dark .blog-list .blog-date,
+body.theme-dark .blog-list .blog-date a,
+body.theme-dark .blog-list .blog-cat,
+body.theme-dark .blog-list .blog-cat p {
+    color: rgba(255, 255, 255, 0.68);
+}
+
+body.theme-dark #about .info-list li strong {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.theme-dark .blog-list h2,
+body.theme-dark .blog-list h2 a {
+    color: #F3F3F4;
+}
+
+body.theme-dark .blog-list h2::after {
+    background-color: rgba(255, 255, 255, 0.15);
+}

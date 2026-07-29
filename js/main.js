@@ -9,6 +9,41 @@
 
 	"use strict";
 
+	var THEME_STORAGE_KEY = 'theme';
+
+	function getPreferredTheme() {
+		try {
+			var saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+			if (saved === 'dark' || saved === 'light') return saved;
+		} catch (e) {}
+
+		if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+
+		return 'light';
+	}
+
+	function applyTheme(theme) {
+		if (theme === 'dark') {
+			$('body').addClass('theme-dark');
+		} else {
+			$('body').removeClass('theme-dark');
+		}
+
+		try {
+			window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+		} catch (e) {}
+	}
+
+	$(function() {
+		var theme = getPreferredTheme();
+		applyTheme(theme);
+
+		$('#theme-toggle').on('click', function() {
+			var next = $('body').hasClass('theme-dark') ? 'light' : 'dark';
+			applyTheme(next);
+		});
+	});
+
 	/*---------------------------------------------------- */
 	/* Preloader
 	------------------------------------------------------ */ 
