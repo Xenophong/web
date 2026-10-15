@@ -2805,6 +2805,41 @@ footer .copyright span:last-child::after {
     transition: width 1s ease-in-out;
 }
 
+/* Focus areas list (About > Technical Depth) */
+.focus-list {
+    list-style: none;
+    margin: 4.8rem 0 3rem;
+    border-top: 1px solid #ebebeb;
+}
+
+.focus-list li {
+    position: relative;
+    margin: 0;
+    padding: 1.4rem 0 1.4rem 3.6rem;
+    border-bottom: 1px solid #ebebeb;
+    font-family: "poppins-semibold", sans-serif;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    letter-spacing: .15rem;
+    text-transform: uppercase;
+    color: #313131;
+}
+
+.focus-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2.6rem;
+    width: 2rem;
+    height: 2px;
+    background: #FF0077;
+    transition: width 0.3s ease;
+}
+
+.focus-list li:hover::before {
+    width: 2.8rem;
+}
+
 /* Better section transitions */
 section {
     transition: opacity 0.3s ease;
